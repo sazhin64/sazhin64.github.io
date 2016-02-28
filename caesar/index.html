@@ -1,0 +1,65 @@
+<!doctype html>
+<meta charset="utf-8">
+
+<title>Шифр Цезаря</title>
+
+<style>
+body {
+  cursor: default;
+  font: 300 14px/1.5 Helvetica, Arial, sans-serif;
+}
+
+.field {
+  margin: 1em 0;
+}
+
+textarea {
+  box-sizing: border-box;
+  width: 100%;
+  height: 150px;
+  resize: vertical;
+}
+</style>
+
+<h1>Шифр Цезаря</h1>
+
+<div class="field">
+  <label for="text">Текст</label>
+  <textarea id="text"></textarea>
+</div>
+
+<div class="field">
+  <label for="shift">Сдвиг</label>
+  <input id="shift" type="number" value="13" min="1">
+</div>
+
+<div class="field">
+  <button id="encrypt">Зашифровать</button>
+  <button id="decrypt">Расшифровать</button>
+</div>
+
+<script>
+var text = document.getElementById('text');
+var shift = document.getElementById('shift');
+var encrypt_button = document.getElementById('encrypt');
+var decrypt_button = document.getElementById('decrypt');
+
+encrypt_button.addEventListener('click', function(event) {
+  text.value = caesarShift(text.value, parseInt(shift.value));
+});
+
+decrypt_button.addEventListener('click', function(event) {
+  text.value = caesarShift(text.value, (26 - parseInt(shift.value)) % 26);
+});
+
+function caesarShift(text, shift) {
+  var result = '';
+  for (var i = 0; i < text.length; i++) {
+    var c = text.charCodeAt(i);
+      if (c >= 65 && c <=  90) result += String.fromCharCode((c - 65 + shift) % 26 + 65);
+      else if (c >= 97 && c <= 122) result += String.fromCharCode((c - 97 + shift) % 26 + 97);
+      else result += text.charAt(i);
+    }
+    return result;
+}
+</script>
