@@ -41,6 +41,23 @@
               <p>Больше информации о свойствах презентации доступно по ссылке</p>
               <a href="http://lab.hakim.se/reveal-js/#/">Reveal.js с онлайн редактором</a>
               </section>
+              <section>
+                <h2>Оформляем фрагменты кода</h2>
+                <code class="hljs hljs javascript" data-trim="" contenteditable=""><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">linkify</span><span class="hljs-params">( selector )</span> </span>{
+  <span class="hljs-keyword">if</span>( supports3DTransforms ) {
+
+    <span class="hljs-keyword">var</span> nodes = <span class="hljs-built_in">document</span>.querySelectorAll( selector );
+
+    <span class="hljs-keyword">for</span>( <span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>, len = nodes.length; i &lt; len; i++ ) {
+      <span class="hljs-keyword">var</span> node = nodes[i];
+
+      <span class="hljs-keyword">if</span>( !node.className ) {
+        node.className += <span class="hljs-string">' roll'</span>;
+      }
+    }
+  }
+}</code>
+              </section>
     <section>
       <h2>Спасибо за внимание!</h2>
     </section>
