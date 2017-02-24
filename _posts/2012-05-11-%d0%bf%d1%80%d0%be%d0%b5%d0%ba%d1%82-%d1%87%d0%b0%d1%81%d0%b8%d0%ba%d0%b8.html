@@ -1,0 +1,55 @@
+---
+layout: post
+status: publish
+published: true
+title: Проект &laquo;Часики&raquo;
+author:
+  display_name: Sergey Sazhin
+  login: admin
+  email: sazhin64@gmail.com
+  url: ''
+author_login: admin
+author_email: sazhin64@gmail.com
+wordpress_id: 883
+wordpress_url: http://sergei-sazhin.ru/?p=883
+date: '2012-05-11 13:38:22 +0600'
+date_gmt: '2012-05-11 07:38:22 +0600'
+categories:
+- проекты на VB
+tags:
+- проекты VB
+comments: []
+---
+<p>Проект &laquo;Часики&raquo;.</p>
+<p>Работа с формой: Поместить на форме три лейбла и один таймер.</p>
+<p>У лейблов поменять свойство Caption на часы, минуты, секунды, поменять BackColor, FillColor, размер шрифта. У таймера поставить свойство enabled = true, interval = 1000</p>
+<p>В проекте используется функция Time.</p>
+<p><code>Option Explicit</p>
+<p>Private Sub Form_Load()</p>
+<p>Form1.Caption = "Часики"</p>
+<p>Label1.Caption = Second(Time)</p>
+<p>Label2.Caption = Minute(Time)</p>
+<p>Label3.Caption = Hour(Time)</p>
+<p>Timer1.Enabled = True</p>
+<p>Zero</p>
+<p>End Sub</p>
+<p>Private Sub Timer1_Timer()</p>
+<p>Label1.Caption = Label1.Caption + 1</p>
+<p>If Label1.Caption > 59 Then</p>
+<p>Label1.Caption = "0"</p>
+<p>Label2.Caption = Label2.Caption + 1</p>
+<p>End If</p>
+<p>If Label2.Caption > 59 Then</p>
+<p>Label2.Caption = "0"</p>
+<p>Label3.Caption = Label3.Caption + 1</p>
+<p>End If</p>
+<p>If Label3.Caption > 23 Then Label3.Caption = "0"</p>
+<p>Zero</p>
+<p>End Sub</p>
+<p>Private Sub Zero()</p>
+<p>If Len(Label1.Caption) < 2 Then Label1.Caption = "0" &amp; Label1.Caption</p>
+<p>If Len(Label2.Caption) < 2 Then Label2.Caption = "0" &amp; Label2.Caption</p>
+<p>If Len(Label3.Caption) < 2 Then Label3.Caption = "0" &amp; Label3.Caption</p>
+<p>End Sub<&#47;code></p>
+<p><a href="http:&#47;&#47;sergei-sazhin.ru&#47;?attachment_id=884" rel="attachment wp-att-884"><img class="aligncenter size-full wp-image-884" title="часики" src="http:&#47;&#47;sergei-sazhin.ru&#47;wp-content&#47;uploads&#47;2012&#47;05&#47;часики.jpg" alt="" width="254" height="78" &#47;><&#47;a><a href="http:&#47;&#47;sergei-sazhin.ru&#47;wp-content&#47;uploads&#47;2012&#47;05&#47;Часики.zip">Скачать проект<&#47;a></p>
+<p>&nbsp;</p>

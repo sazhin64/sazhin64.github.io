@@ -1,0 +1,98 @@
+---
+layout: post
+status: publish
+published: true
+title: Проект "Построение диаграмм"
+author:
+  display_name: Sergey Sazhin
+  login: admin
+  email: sazhin64@gmail.com
+  url: ''
+author_login: admin
+author_email: sazhin64@gmail.com
+wordpress_id: 1098
+wordpress_url: http://sergei-sazhin.ru/?p=1098
+date: '2012-05-12 23:52:01 +0600'
+date_gmt: '2012-05-12 17:52:01 +0600'
+categories:
+- проекты на VB
+tags:
+- проекты VB
+comments: []
+---
+<p>Построение диаграмм.</p>
+<p>Работа с формой: разместить на форме 6 текстбоксов и 6 лейблов, одну командную кнопку. У лейблов изменить кепшн на названия материков, а выравнивание сделать по центру.</p>
+<p>Чтобы проект заработал, нужно в текстбоксы вписать цифры, отражающие население материков (Европа - 800 млн, Азия&nbsp; - 4000 млн, Африка - 700 млн, Сев. Америка - 500 млн, Юж. Америка - 400 млн, Австралия - 40 млн.)</p>
+<p><code>Private Sub Command1_Click()<br />
+Picture1.BackColor = vbCyan<br />
+X1 = CInt(Text1.Text)<br />
+X2 = CInt(Text2.Text)<br />
+X3 = CInt(Text3.Text)<br />
+X4 = CInt(Text4.Text)<br />
+X5 = CInt(Text5.Text)<br />
+X6 = CInt(Text6.Text)<br />
+z = X1 + X2 + X3 + X4 + X5 + X6<br />
+a1 = X1 * 360 &#47; z<br />
+a2 = a1 + X2 * 360 &#47; z<br />
+a3 = a2 + X3 * 360 &#47; z<br />
+a4 = a3 + X4 * 360 &#47; z<br />
+a5 = a4 + X5 * 360 &#47; z<br />
+a6 = a5 + X6 * 360 &#47; z<br />
+p1 = Round(X1 &#47; z * 100)<br />
+p2 = Round(X2 &#47; z * 100)<br />
+p3 = Round(X3 &#47; z * 100)<br />
+p4 = Round(X4 &#47; z * 100)<br />
+p5 = Round(X5 &#47; z * 100)<br />
+p6 = Round(X6 &#47; z * 100)<br />
+Picture1.FillStyle = 0<br />
+Picture1.FillColor = vbGreen<br />
+Picture1.Circle (Picture1.Width &#47; 2, _<br />
+Picture1.Width &#47; 2), (Picture1.Width - 1000) _<br />
+&#47; 2, , -6.28, -(a1 * 3.14 &#47; 180)<br />
+Picture1.FillColor = vbYellow<br />
+Picture1.Circle (Picture1.Width &#47; 2, _<br />
+Picture1.Width &#47; 2), (Picture1.Width - 1000) _<br />
+&#47; 2, , -(a1 * 3.14 &#47; 180), -(a2 * 3.14 &#47; 180)<br />
+Picture1.FillColor = vbmagneta<br />
+Picture1.Circle (Picture1.Width &#47; 2, _<br />
+Picture1.Width &#47; 2), (Picture1.Width - 1000) _<br />
+&#47; 2, , -(a3 * 3.14 &#47; 180), -(a4 * 3.14 &#47; 180)<br />
+Picture1.FillColor = vbBlack<br />
+Picture1.Circle (Picture1.Width &#47; 2, _<br />
+Picture1.Width &#47; 2), (Picture1.Width - 1000) _<br />
+&#47; 2, , -(a4 * 3.14 &#47; 180), -(a5 * 3.14 &#47; 180)<br />
+Picture1.FillColor = vbWhite<br />
+Picture1.Circle (Picture1.Width &#47; 2, _<br />
+Picture1.Width &#47; 2), (Picture1.Width - 1000) _<br />
+&#47; 2, , -(a5 * 3.14 &#47; 180), -(a6 * 3.14 &#47; 180)<br />
+Picture1.Line (1000, 4100)-(1300, 4250), _<br />
+vbGreen, BF<br />
+Picture1.CurrentX = 1500<br />
+Picture1.CurrentY = 4100<br />
+Picture1.Print "Europe", , p1; "%"<br />
+Picture1.Line (1000, 4300)-(1300, 4450), _<br />
+vbYellow, BF<br />
+Picture1.CurrentX = 1500<br />
+Picture1.CurrentY = 4300<br />
+Picture1.Print "Asia", , p2; "%"<br />
+Picture1.Line (1000, 4100)-(1300, 4650), vbRed, BF<br />
+Picture1.CurrentX = 1500<br />
+Picture1.CurrentY = 4500<br />
+Picture1.Print "Africa", , p3; "%"<br />
+Picture1.Line (1000, 4700)-(1300, 4850), _<br />
+vbmagneta, BF<br />
+Picture1.CurrentX = 1500<br />
+Picture1.CurrentY = 4700<br />
+Picture1.Print "Northern America", , p4; "%"<br />
+Picture1.Line (1000, 4900)-(1300, 5150), vbaqua, BF<br />
+Picture1.CurrentX = 1500<br />
+Picture1.CurrentY = 4900<br />
+Picture1.Print "south america", , p5; "%"<br />
+Picture1.Line (1000, 5100)-(1300, 5250), _<br />
+vbWhite, BF<br />
+Picture1.CurrentX = 1500<br />
+Picture1.CurrentY = 5100<br />
+Picture1.Print "Australia", , p1; "%"<br />
+End Sub<&#47;code><br />
+<a href="http:&#47;&#47;sergei-sazhin.ru&#47;?attachment_id=1102" rel="attachment wp-att-1102"><img src="http:&#47;&#47;sergei-sazhin.ru&#47;wp-content&#47;uploads&#47;2012&#47;05&#47;diagram.jpg" alt="" title="diagram" width="658" height="719" class="aligncenter size-full wp-image-1102" &#47;><&#47;a><br />
+<a href="http:&#47;&#47;sergei-sazhin.ru&#47;wp-content&#47;uploads&#47;2012&#47;05&#47;diagramm.rar">Скачать проект<&#47;a></p>

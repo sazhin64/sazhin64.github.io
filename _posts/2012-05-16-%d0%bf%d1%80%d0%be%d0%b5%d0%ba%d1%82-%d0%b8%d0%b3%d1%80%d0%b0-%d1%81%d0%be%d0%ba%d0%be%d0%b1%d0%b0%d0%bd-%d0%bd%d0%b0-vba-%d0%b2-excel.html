@@ -1,0 +1,88 @@
+---
+layout: post
+status: publish
+published: true
+title: Проект "Игра Сокобан" на VBA в Excel
+author:
+  display_name: Sergey Sazhin
+  login: admin
+  email: sazhin64@gmail.com
+  url: ''
+author_login: admin
+author_email: sazhin64@gmail.com
+wordpress_id: 1166
+wordpress_url: http://sergei-sazhin.ru/?p=1166
+date: '2012-05-16 15:21:22 +0600'
+date_gmt: '2012-05-16 09:21:22 +0600'
+categories:
+- Excel VBA
+tags:
+- VBA
+- Excel
+- проект
+- игра
+- игры
+comments: []
+---
+<p>Эта игра немного сложнее, чем предыдущая.<br />
+1. Работа с листами.<br />
+выделить квадратную область в диапазоне B2:U21, залить ее голубым цветом и сделать рамку. Назначить шрифт Wingdings 16 pt, для столбцов ширина = 3. Пишем заголовок и всавляем элемент - Combobox<br />
+Лист будет иметь такой вид:<br />
+<a href="http:&#47;&#47;sergei-sazhin.ru&#47;?attachment_id=1167" rel="attachment wp-att-1167"><img class="aligncenter  wp-image-1167" title="соко" src="http:&#47;&#47;sergei-sazhin.ru&#47;wp-content&#47;uploads&#47;2012&#47;05&#47;соко.jpg" alt="" width="437" height="551" &#47;><&#47;a>Далее копируем лист сокобан, и создаем три копии, переименовываем их в ур1, ур2, ур3. Раскрашиваем листы ур1, ур2, ур3 как показано на рисунке:</p>
+<p><a href="http:&#47;&#47;sergei-sazhin.ru&#47;?attachment_id=1171" rel="attachment wp-att-1171"><img class="aligncenter  wp-image-1171" title="ур1" src="http:&#47;&#47;sergei-sazhin.ru&#47;wp-content&#47;uploads&#47;2012&#47;05&#47;ур1.jpg" alt="" width="458" height="484" &#47;><&#47;a><a href="http:&#47;&#47;sergei-sazhin.ru&#47;?attachment_id=1172" rel="attachment wp-att-1172"><img class="aligncenter  wp-image-1172" title="ур2" src="http:&#47;&#47;sergei-sazhin.ru&#47;wp-content&#47;uploads&#47;2012&#47;05&#47;ур2.jpg" alt="" width="462" height="495" &#47;><&#47;a><a href="http:&#47;&#47;sergei-sazhin.ru&#47;?attachment_id=1173" rel="attachment wp-att-1173"><img class="aligncenter  wp-image-1173" title="ур3" src="http:&#47;&#47;sergei-sazhin.ru&#47;wp-content&#47;uploads&#47;2012&#47;05&#47;ур3.jpg" alt="" width="458" height="496" &#47;><&#47;a>для создания ящиков и смайла используйте сочетание клавиш Alt+74 для смайла Alt+114 для создания ящика. Для заливки лабиринта используйте только белый цвет! Склад для ящиков делайте в виде границы с тонкой сплошной линией.</p>
+<p>В книге приведены три уровня, в моей версии выполнено 5 уровней. Если вы захотите скачать мой проект.</p>
+<p>Пишем код.</p>
+<p>1. Для комбобокса.</p>
+<p><code>Private Sub ComboBox1_Change()<br />
+If ComboBox1.Value = Cells(23, 1).Value Then List = "ур1"<br />
+If ComboBox1.Value = Cells(24, 1).Value Then List = "ур2"<br />
+If ComboBox1.Value = Cells(25, 1).Value Then List = "ур3"<br />
+If ComboBox1.Value = Cells(26, 1).Value Then List = "ур4"<br />
+If ComboBox1.Value = Cells(27, 1).Value Then List = "ур5"<br />
+Worksheets(List).Range("b2:u21").Copy Destination:=Range("b2:u21")<br />
+Call initkeyBoard<br />
+End Sub<&#47;code><br />
+Создаем отдельный модуль, в который пишем остальной код.<br />
+<code>Dim x, y<br />
+Sub initkeyBoard()<br />
+For i = 2 To 21: For j = 2 To 21<br />
+If Cells(i, j) = Chr$(74) Then y = i: x = j<br />
+Next j, i<br />
+Cells(1, 2).Select<br />
+Application.OnKey "{Right}", "moveright"<br />
+Application.OnKey "{Left}", "moveleft"<br />
+Application.OnKey "{Up}", "moveup"<br />
+Application.OnKey "{Down}", "movedown"<br />
+End Sub<br />
+Sub moveright()<br />
+If Cells(y, x + 1).Interior.ColorIndex = 2 Then Call move(0, 1)<br />
+End Sub<br />
+Sub moveleft()<br />
+If Cells(y, x - 1).Interior.ColorIndex = 2 Then Call move(0, -1)<br />
+End Sub<br />
+Sub moveup()<br />
+If Cells(y - 1, x).Interior.ColorIndex = 2 Then Call move(-1, 0)<br />
+End Sub<br />
+Sub movedown()<br />
+If Cells(y + 1, x).Interior.ColorIndex = 2 Then Call move(1, 0)<br />
+End Sub<br />
+Sub move(dy, dx)<br />
+If Cells(y + dy, x + dx) = "" Then<br />
+Cells(y, x) = "": x = x + dx: y = y + dy: Cells(y, x) = Chr$(74)<br />
+ElseIf Cells(y + dy, x + dx) = Chr$(114) Then<br />
+If Cells(y + 2 * dy, x + 2 * dx).Interior.ColorIndex = 2 _<br />
+And Cells(y + 2 * dy, x + 2 * dx) = "" Then<br />
+Cells(y + 2 * dy, x + 2 * dx) = Chr$(114)<br />
+Cells(y, x) = "": x = x + dx: y = y + dy: Cells(y, x) = Chr$(74)<br />
+Call test<br />
+End If<br />
+End If<br />
+End Sub<br />
+Sub test()<br />
+f = True<br />
+For i = 2 To 21: For j = 2 To 21<br />
+If Cells(i, j).Borders.LineStyle = 1 And Cells(i, j) <> Chr$(114) Then f = False<br />
+Next j, i<br />
+If f Then MsgBox ("Поздравляем, вы выиграли!")<br />
+End Sub<&#47;code><br />
+<a href="http:&#47;&#47;sergei-sazhin.ru&#47;wp-content&#47;uploads&#47;2012&#47;05&#47;Сокебан.xlsm">Скачать проект<&#47;a></p>

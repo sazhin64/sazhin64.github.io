@@ -1,0 +1,68 @@
+---
+layout: post
+status: publish
+published: true
+title: Проект с выбором Case
+author:
+  display_name: Sergey Sazhin
+  login: admin
+  email: sazhin64@gmail.com
+  url: ''
+author_login: admin
+author_email: sazhin64@gmail.com
+wordpress_id: 1067
+wordpress_url: http://sergei-sazhin.ru/?p=1067
+date: '2012-05-12 11:47:02 +0600'
+date_gmt: '2012-05-12 05:47:02 +0600'
+categories:
+- проекты на VB
+tags:
+- проекты VB
+comments: []
+---
+<p>Работа с формой: помещаем на форму 1 лейбл, три командные кнопки и один текстбокс.<br />
+при нажатии на первую командную кнопку выводится инпутбокс, в который предлагается ввести имя, в текстбокс вводится отметка, которую вы получили в школе. В зависимости от этого в лейбле появляется надпись. Вы можете составить свой текст.<br />
+<code>Option Explicit<br />
+Dim n As String<br />
+Dim x As Byte<br />
+Private Sub Command1_Click()<br />
+n = InputBox("Как вас зовут, уважаемый?", "Окно ввода имени")<br />
+Label1.Caption = n + ", что вы сегодня получили в школе?"<br />
+End Sub<br />
+Private Sub Command2_Click()<br />
+x = Val(Text1.Text)<br />
+Select Case x<br />
+Case 1<br />
+Text1.Text = "УПС!"<br />
+Label1.Caption = "Плохо! Я достаю из широких штанин... ремень, негодник!"<br />
+Case 2<br />
+Text1.Text = "ОПС!"<br />
+Label1.Caption = "Неудовлетворительно! Сегодня - без Интернета!"<br />
+Case 3<br />
+Text1.Text = "УДВЛ!"<br />
+Label1.Caption = "Ну что," + n + ", удовлетворил школу?"<br />
+Case 4<br />
+Text1.Text = "Хор!"<br />
+Label1.Caption = "А четверка - это очень, очень хорошо!"<br />
+Case 5<br />
+Text1.Text = "Вау!"<br />
+Label1.Caption = "Ну, " + n + ", отлично! Весь в отца!"<br />
+Case Else<br />
+Text1.Text = "????"<br />
+Label1.Caption = "Ты что, " + n + ", не знаешь, какие оценки бывают?"<br />
+End Select<br />
+End Sub<br />
+Private Sub Command3_Click()<br />
+End<br />
+End Sub<&#47;code><br />
+<a href="http:&#47;&#47;sergei-sazhin.ru&#47;?attachment_id=1074" rel="attachment wp-att-1074"><img class="size-full wp-image-1074 alignleft" title="okno" src="http:&#47;&#47;sergei-sazhin.ru&#47;wp-content&#47;uploads&#47;2012&#47;05&#47;okno.jpg" alt="" width="376" height="162" &#47;><&#47;a></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p style="text-align: left;">Окно ввода имени.<br />
+<a href="http:&#47;&#47;sergei-sazhin.ru&#47;?attachment_id=1075" rel="attachment wp-att-1075"><img class="aligncenter size-full wp-image-1075" title="perevod" src="http:&#47;&#47;sergei-sazhin.ru&#47;wp-content&#47;uploads&#47;2012&#47;05&#47;perevod.jpg" alt="" width="634" height="181" &#47;><&#47;a><br />
+Перевод отметки в ответ.<br />
+<a href="http:&#47;&#47;sergei-sazhin.ru&#47;?attachment_id=1076" rel="attachment wp-att-1076"><img class="aligncenter size-full wp-image-1076" title="roditel" src="http:&#47;&#47;sergei-sazhin.ru&#47;wp-content&#47;uploads&#47;2012&#47;05&#47;roditel.jpg" alt="" width="636" height="179" &#47;><&#47;a><br />
+Ответ родителя:)<br />
+<a href="http:&#47;&#47;sergei-sazhin.ru&#47;wp-content&#47;uploads&#47;2012&#47;05&#47;Проект-Case.rar">Скачать проект<&#47;a><&#47;p></p>

@@ -1,0 +1,109 @@
+---
+layout: post
+status: publish
+published: true
+title: Проект "График функции"
+author:
+  display_name: Sergey Sazhin
+  login: admin
+  email: sazhin64@gmail.com
+  url: ''
+author_login: admin
+author_email: sazhin64@gmail.com
+wordpress_id: 1495
+wordpress_url: http://sergei-sazhin.ru/?p=1495
+date: '2012-11-30 19:21:20 +0600'
+date_gmt: '2012-11-30 13:21:20 +0600'
+categories:
+- Excel VBA
+tags:
+- Excel
+comments: []
+---
+<p>Для осуществления этого проекта вам понадобятся навыки работы с формой в Visual Basic. Кроме написания кода, вам придется заполнить специальную форму с лейблами и текстбоксами.<br />
+Вначале сохраним книгу Excel с поддержкой макросов.<br />
+В ней заполним таблицу как показано на рисунке. Для этого используйте автозаполнение.<br />
+<a href="http:&#47;&#47;sergei-sazhin.ru&#47;?attachment_id=1496" rel="attachment wp-att-1496"><img class="aligncenter size-full wp-image-1496" title="graphik" src="http:&#47;&#47;sergei-sazhin.ru&#47;wp-content&#47;uploads&#47;2012&#47;11&#47;graphik.jpg" alt="" width="347" height="708" &#47;><&#47;a></p>
+<p>когда заполните таблицу, переходите в модуль написания кода Visual Basic. В нем создайте отдельный модуль и форму UserForm.&nbsp; В форму вставьте текстбоксы и лейблы так, чтобы получилось как на рисунке. Зайдите в свойства каждого элемента, измените Caption и другие нужные вам свойства.</p>
+<p>У вас должно получиться так.</p>
+<p><a href="http:&#47;&#47;sergei-sazhin.ru&#47;?attachment_id=1497" rel="attachment wp-att-1497"><img class="aligncenter size-full wp-image-1497" title="userform" src="http:&#47;&#47;sergei-sazhin.ru&#47;wp-content&#47;uploads&#47;2012&#47;11&#47;userform.jpg" alt="" width="600" height="408" &#47;><&#47;a>Еще вставьте 2 переключателя Option Button</p>
+<p>напишите программный код и поместите его в модуль.</p>
+<p><code>Sub init()<br />
+UserForm1.Show<br />
+End Sub<br />
+Private Sub CommandButton1_Click()<br />
+inputerror = False<br />
+fun$ = TextBox1.Text<br />
+If Len(fun$) < 3 Then inputerror = True<br />
+xmin = Val(TextBox2.Text)<br />
+xmax = Val(TextBox3.Text)<br />
+If xmax <= xmin Then inputerror = True<br />
+n = Val(TextBox4.Text)<br />
+If n < 2 Then inputerror = True<br />
+auto = OptionButton1.Value<br />
+If Not auto Then<br />
+ymin = Val(TextBox5.Text)<br />
+ymax = Val(TextBox6.Text)<br />
+If ymax <= ymin Then inputerror = True<br />
+End If<br />
+delpoint = CheckBox1.Value<br />
+If inputerror Then MsgBox ("Неправильно введены данные !"): Exit Sub<br />
+ActiveWorkbook.Worksheets.Add<br />
+Cells(1, 1) = "x": Cells(1, 2) = fun$<br />
+d = (xmax - xmin) &#47; n<br />
+For i = 0 To n: Cells(i + 2, 1) = xmin + i * d: Next i<br />
+F$ = ""<br />
+For i = 2 To Len(fun$)<br />
+c$ = Mid$(fun$, i, 1)<br />
+If c$ = "x" Or c$ = "X" Then F$ = F$ + "A2" Else F$ = F$ + c$<br />
+Next i<br />
+Cells(2, 2) = F$<br />
+For i = 1 To n: Cells(2, 2).Copy Destination:=Cells(i + 2, 2): Next i<br />
+Cerr = 0<br />
+For i = 0 To n<br />
+If Cells(i + 2, 2).Errors.Item(1).Value = True Then<br />
+Cells(i + 2, 2) = "": Cerr = Cerr + 1<br />
+End If<br />
+Next i<br />
+If Cerr = n + 1 Then<br />
+Application.DisplayAlerts = False<br />
+ActiveSheet.Delete<br />
+Application.DisplayAlerts = True<br />
+MsgBox (" Неверно введена функция")<br />
+Exit Sub<br />
+End If<br />
+If delpoint Then<br />
+For i = 0 To n - 1<br />
+r1 = Cells(i + 2, 2): r2 = Cells(i + 3, 2)<br />
+If r1 * r2 < 0 And Abs(r1) + Abs(r2) > 10 Then Cells(i + 2, 2) = ""<br />
+Next i<br />
+End If<br />
+ActiveSheet.ChartObjects.Add 100, 20, 500, 300<br />
+Dim ChartObjects As Object<br />
+Dim r As Chart<br />
+Set r = ActiveSheet.ChartObjects(1).Chart<br />
+r.ChartType = xlXYScatterSmoothNoMarkers<br />
+dia$ = "A1:B" + Right$(Str$(n + 2), Len(Str$(n + 2)) - 1)<br />
+r.SetSourceData Source:=Range(dia$), PlotBy:=xlColumns<br />
+r.HasLegend = False<br />
+r.PlotArea.Interior.ColorIndex = 6<br />
+If Not auto Then<br />
+End If<br />
+UserForm1.Hide<br />
+End Sub<br />
+Private Sub OptionButton1_Click()<br />
+Label5.Visible = False<br />
+Label6.Visible = False<br />
+TextBox5.Visible = False<br />
+TextBox6.Visible = False<br />
+End Sub<br />
+Private Sub OptionButton2_Click()<br />
+Label5.Visible = True<br />
+Label6.Visible = True<br />
+TextBox5.Visible = True<br />
+TextBox6.Visible = True<br />
+End Sub<&#47;code><br />
+После запуска программы могут появиться ошибки, которые можно исправить с помощью кнопки Debug.<br />
+После выполнения программного кода, у вас появится вот такой график.<br />
+<a href="http:&#47;&#47;sergei-sazhin.ru&#47;?attachment_id=1500" rel="attachment wp-att-1500"><img src="http:&#47;&#47;sergei-sazhin.ru&#47;wp-content&#47;uploads&#47;2012&#47;11&#47;graphik1.jpg" alt="" title="graphik1" width="901" height="689" class="aligncenter size-full wp-image-1500" &#47;><&#47;a><br />
+<a href='http:&#47;&#47;sergei-sazhin.ru&#47;?attachment_id=1502' rel='attachment wp-att-1502'>Скачать проект<&#47;a></p>

@@ -1,0 +1,54 @@
+---
+layout: post
+status: publish
+published: true
+title: Проект "Вкус детства"
+author:
+  display_name: Sergey Sazhin
+  login: admin
+  email: sazhin64@gmail.com
+  url: ''
+author_login: admin
+author_email: sazhin64@gmail.com
+wordpress_id: 866
+wordpress_url: http://sergei-sazhin.ru/?p=866
+date: '2012-05-10 22:38:55 +0600'
+date_gmt: '2012-05-10 16:38:55 +0600'
+categories:
+- проекты на VB
+tags:
+- проекты VB
+comments: []
+---
+<p>Работа с формой: размещаем на форме объект Picture, CommandButton - 2. Одна кнопка для запуска, вторая для выхода.</p>
+<p><code>Private Sub Command1_Click()<br />
+Picture1.BackColor = QBColor(7)<br />
+Picture1.Scale (-225, 225)-(225, -225)<br />
+Picture1.DrawWidth = 2<br />
+Picture1.Line (-100, -200)-(100, -100), vbMagneta, BF<br />
+Picture1.FillStyle = 0<br />
+Picture1.FillColor = QBColor(7)<br />
+Picture1.Circle (-100, -100), 100, QBColor(7)<br />
+Picture1.Circle (100, -100), 100, QBColor(7)<br />
+Picture1.Line (-100, -200)-(100, -200), vbWhite<br />
+Picture1.Circle (-100, -100), 100, vbWhite, 4.71, 0<br />
+Picture1.Circle (100, -100), 100, vbWhite, 3.14, 4.71<br />
+Picture1.FillColor = vbYellow<br />
+Picture1.Circle (0, 0), 100, vbWhite, -3.14, -6.28<br />
+Picture1.FillColor = vbBlue<br />
+Picture1.Circle (0, 50), 50, vbWhite<br />
+Picture1.FillColor = vbRed<br />
+Picture1.Circle (-50, 0), 50, vbWhite, -6.28, -3.14<br />
+Picture1.FillColor = vbGreen<br />
+Picture1.Circle (50, 0), 50, vbWhite, -6.28, -3.14<br />
+Picture1.PSet (-150, 175), QBColor(7)<br />
+Picture1.FontBold = True<br />
+Picture1.FontSize = 24<br />
+Picture1.ForeColor = RGB(255, 0, 0)<br />
+Picture1.Print "Вкус детства"<br />
+End Sub<br />
+Private Sub Command2_Click()<br />
+End<br />
+End Sub<&#47;code><br />
+<a href="http:&#47;&#47;sergei-sazhin.ru&#47;?attachment_id=867" rel="attachment wp-att-867"><img src="http:&#47;&#47;sergei-sazhin.ru&#47;wp-content&#47;uploads&#47;2012&#47;05&#47;morozhenoe.jpg" alt="" title="morozhenoe" width="543" height="497" class="aligncenter size-full wp-image-867" &#47;><&#47;a><br />
+<a href="http:&#47;&#47;sergei-sazhin.ru&#47;wp-content&#47;uploads&#47;2012&#47;05&#47;Мороженое.rar">Скачать проект<&#47;a></p>

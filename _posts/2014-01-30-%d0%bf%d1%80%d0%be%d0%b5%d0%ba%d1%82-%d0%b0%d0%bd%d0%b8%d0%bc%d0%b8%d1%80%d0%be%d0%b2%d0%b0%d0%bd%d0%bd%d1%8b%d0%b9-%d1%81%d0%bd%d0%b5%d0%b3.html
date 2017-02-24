@@ -1,0 +1,150 @@
+---
+layout: post
+status: publish
+published: true
+title: Проект "Анимированный снег"
+author:
+  display_name: Sergey Sazhin
+  login: admin
+  email: sazhin64@gmail.com
+  url: ''
+author_login: admin
+author_email: sazhin64@gmail.com
+wordpress_id: 1750
+wordpress_url: http://sergei-sazhin.ru/?p=1750
+date: '2014-01-30 22:50:00 +0600'
+date_gmt: '2014-01-30 16:50:00 +0600'
+categories:
+- проекты на VB
+tags:
+- проекты VB
+comments: []
+---
+<p>Visual Basic дает возможность создавать анимированные рисунки. Наиболее эффектным является падающий снег.</p>
+<p>В этом проекте у меня не все получилось, но снег получился замечательный. А главное, можно писать мышкой.</p>
+<p>Мысль состоит в том, что частицы снега падают, и если цвет точки черный, то продолжают падать, а если другой, то останавливаются. И получается, что снежинки налипают на все, что попадается на пути.</p>
+<p>В результате у меня получилось примерно так:</p>
+<p><a href="http:&#47;&#47;sergei-sazhin.ru&#47;?attachment_id=1751" rel="attachment wp-att-1751"><img class="aligncenter size-full wp-image-1751" title="snow" src="http:&#47;&#47;sergei-sazhin.ru&#47;wp-content&#47;uploads&#47;2014&#47;01&#47;snow.jpg" alt="" width="795" height="385" &#47;><&#47;a></p>
+<p>Вначале нужно подключить модуль Snow_module, в него вставить код:<br />
+<code>Option Explicit<br />
+Type xParticle<br />
+X As Integer<br />
+Y As Integer<br />
+oldX As Integer<br />
+oldY As Integer<br />
+iStopped As Integer<br />
+End Type<br />
+Global Const MAXP = 400<br />
+Global Const PSIZE = 1<br />
+Global Snow(0 To MAXP) As xParticle<&#47;code></p>
+<p>Основной код:<br />
+<code>Option Explicit<br />
+Dim bRUN As Boolean<br />
+Dim fMouseDown_X As Single<br />
+Dim fMouseDown_Y As Single<br />
+Dim bMOUSE_DOWN As Boolean</p>
+<p>Private Sub Form_Load()<br />
+Randomize<br />
+Me.ScaleMode = vbPixels<br />
+Me.DrawWidth = PSIZE<br />
+Me.BackColor = vbBlack<br />
+Dim i As Integer<br />
+For i = 0 To MAXP<br />
+Snow(i).X = CInt(Int(Me.ScaleWidth * Rnd))<br />
+Snow(i).Y = CInt(Int(Me.ScaleHeight * Rnd))<br />
+Next i<br />
+bRUN = True<br />
+Timer1.Enabled = True<br />
+Const sTEXT = "Снег летает"<br />
+Me.ForeColor = vbRed<br />
+Me.CurrentX = Me.ScaleWidth = TextWidth(sTEXT)<br />
+Me.CurrentY = Me.ScaleHeight = TextHeight(sTEXT)<br />
+Me.Print sTEXT<br />
+Me.ForeColor = vbWhite<br />
+End Sub<br />
+Sub DrawSnow()<br />
+Dim i As Integer<br />
+Dim newX As Integer<br />
+Dim newY As Integer<br />
+Timer1.Enabled = False<br />
+Do While bRUN<br />
+For i = 0 To MAXP<br />
+Me.PSet (Snow(i).oldX, Snow(i).oldY), vbBlack<br />
+Me.PSet (Snow(i).X, Snow(i).Y)<br />
+Next i<br />
+For i = 0 To MAXP<br />
+Snow(i).oldX = Snow(i).X<br />
+Snow(i).oldY = Snow(i).Y<br />
+newX = Snow(i).X + Int(2 * Rnd)<br />
+newX = newX - Int(2 * Rnd)<br />
+If newX < 0 Then newX = 0<br />
+If newX >= Me.ScaleWidth Then newX = Me.ScaleWidth - 1<br />
+newY = Snow(i).Y + 1<br />
+If Me.Point(newX, newY) = vbBlack Then<br />
+Snow(i).Y = newY<br />
+Snow(i).X = newX<br />
+Else<br />
+If Snow(i).iStopped = 10 Then<br />
+If Me.Point(Snow(i).X + 1, Snow(i).Y + 1) = vbBlack Then<br />
+Snow(i).X = Snow(i).X + 1<br />
+Snow(i).Y = Snow(i).Y + 1<br />
+Snow(i).iStopped = 0<br />
+ElseIf Me.Point(Snow(i).X - 1, Snow(i).Y + 1) = vbBlack Then<br />
+Snow(i).X = Snow(i).X - 1<br />
+Snow(i).Y = Snow(i).Y + 1<br />
+Snow(i).iStopped = 0<br />
+Else<br />
+newParticle (i)<br />
+End If<br />
+Else<br />
+Snow(i).iStopped = Snow(i).iStopped + 1<br />
+End If<br />
+End If<br />
+If (Snow(i).Y) >= Me.ScaleHeight Then<br />
+newParticle (i)<br />
+End If<br />
+Next i<br />
+DoEvents<br />
+Loop<br />
+End Sub<br />
+Sub newParticle(i As Integer)<br />
+Snow(i).X = CInt(Int(Me.ScaleWidth * Rnd))<br />
+Snow(i).Y = 0<br />
+Snow(i).oldX = 0<br />
+Snow(i).oldY = 0<br />
+Snow(i).iStopped = 0<br />
+End Sub<br />
+Private Sub Form_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)<br />
+Me.PSet (X, Y)<br />
+bMOUSE_DOWN = True<br />
+fMouseDown_X = X<br />
+fMouseDown_Y = Y<br />
+End Sub<br />
+Private Sub Form_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)<br />
+If bMOUSE_DOWN Then<br />
+Dim oldDW As Long<br />
+Dim oldFC As Long<br />
+oldDW = Me.DrawWidth<br />
+oldFC = Me.ForeColor<br />
+Me.DrawWidth = 3<br />
+Me.ForeColor = vbRed<br />
+Me.Line (fMouseDown_X, fMouseDown_Y)-(X, Y)<br />
+fMouseDown_X = X<br />
+fMouseDown_Y = Y<br />
+Me.DrawWidth = oldDW<br />
+Me.ForeColor = oldFC<br />
+End If<br />
+End Sub<br />
+Private Sub Form_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)<br />
+bMOUSE_DOWN = False<br />
+End Sub<br />
+Private Sub Form_QueryUnload(cancel As Integer, UnloadMode As Integer)<br />
+bRUN = False<br />
+End Sub<br />
+Private Sub timer1_timer()<br />
+DrawSnow<br />
+End Sub<br />
+<&#47;code></p>
+<p>А это готовый проект для тех, кто не смог сделать самостоятельно.</p>
+<p><a href="http:&#47;&#47;sergei-sazhin.ru&#47;?attachment_id=1752" rel="attachment wp-att-1752">снег<&#47;a></p>
+<p>&nbsp;</p>

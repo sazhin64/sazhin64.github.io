@@ -1,0 +1,50 @@
+---
+layout: post
+status: publish
+published: true
+title: Сумма от 1 до N
+author:
+  display_name: Sergey Sazhin
+  login: admin
+  email: sazhin64@gmail.com
+  url: ''
+author_login: admin
+author_email: sazhin64@gmail.com
+wordpress_id: 1135
+wordpress_url: http://sergei-sazhin.ru/?p=1135
+date: '2012-05-15 13:48:16 +0600'
+date_gmt: '2012-05-15 07:48:16 +0600'
+categories:
+- Решение олимпиадных задач
+tags:
+- Pascal
+- ABC Pascal
+- Задачи
+- паскаль
+comments: []
+---
+<p>Требуется посчитать сумму целых чисел от 1 до N.<br />
+Входные данные В единственной строке входного файла INPUT.TXT записано единственное целое число N, не превышающее по абсолютной величине 104.<br />
+Выходные данные В единственную строку выходного файла OUTPUT.TXT нужно вывести одно целое число &mdash; сумму чисел от 1 до N. Пример<br />
+№	INPUT.TXT	OUTPUT.TXT<br />
+1	5	15<br />
+Решение:<br />
+ <code>var<br />
+ a, s: real;<br />
+  f: text;<br />
+begin<br />
+  read(a);<br />
+  assign(f, 'F:&#47;input.txt');<br />
+  rewrite(f);<br />
+  writeln(f, a);<br />
+  close(f);<br />
+  assign(f, 'F:&#47;output.txt');<br />
+  rewrite(f);<br />
+s:=(1+a)*a&#47;2;<br />
+if a<0 then<br />
+s:=((1+a)*(-a+2))&#47;2;<br />
+  writeln(f, s);<br />
+  close(f);<br />
+end.<&#47;code><br />
+Внимание! Когда будете писать программу, не забывайте о правильности имен файлов. Создав текстовый файл input.txt, зайдите в его свойства и скопируйте путь, вставьте в код программы. и для создаваемого output.txt предусмотрите тот же путь.<br />
+<a href="http:&#47;&#47;sergei-sazhin.ru&#47;wp-content&#47;uploads&#47;2012&#47;05&#47;summa-1...N.pas_.7z">Скачать программу<&#47;a></p>

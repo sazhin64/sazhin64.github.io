@@ -1,0 +1,47 @@
+---
+layout: post
+status: publish
+published: true
+title: Проект калькулятор
+author:
+  display_name: Sergey Sazhin
+  login: admin
+  email: sazhin64@gmail.com
+  url: ''
+author_login: admin
+author_email: sazhin64@gmail.com
+wordpress_id: 968
+wordpress_url: http://sergei-sazhin.ru/?p=968
+date: '2012-05-11 21:58:03 +0600'
+date_gmt: '2012-05-11 15:58:03 +0600'
+categories:
+- проекты на VB
+tags:
+- Visual Basic
+- Калькулятор
+- проекты VB
+comments: []
+---
+<p>Проект калькулятор.<br />
+1. подготовка формы. На форме расположить 7 командных кнопок Command button, 3 текстбокса, 2 лейбла. Командные кнопки будут выполнять следующие функции: они будут выполнять арифметические действия (&laquo;+&raquo;, &laquo;&ndash;&raquo;, &laquo;*&raquo;, &laquo;&#47;&raquo;), извлекать корень, очищать поля и осуществлять выход.<br />
+2. У элементов формы меняем свойства. Caption. Command1 &ndash; &ldquo;+&rdquo;, Command2 &ndash; &ldquo;&ndash; &ldquo;, Command3 &ndash; &ldquo;*&rdquo;, Command4 &ndash; &ldquo;&#47;&rdquo;, Command5 &ndash; &ldquo;&radic;&rdquo;, Command6 &ndash; &laquo;Очистить&raquo;, Command7 &ndash; &laquo;Выход&raquo;.<br />
+3. Меняем цвет фона, цвет кнопок, размер шрифта. Можно загрузить фотографию вместо фона. Только предварительно нужно изменить ее размер. С помощью редактора Adobe Photoshop или Paint, измените размер рисунка до размеров калькулятора. В свойствах формы выберите Picture. Загрузите вашу фотографию, подгоните по размерам формы.<br />
+4. Приступаем к написанию кода. Я дам вам только код одной кнопки. Остальные нужно сделать самостоятельно по аналогии.<br />
+<code>Private Sub Command1_Click()<br />
+Text3.Text = Val(Text1.Text) + Val(Text2.Text)<br />
+Label2.Caption = "Плюс"<br />
+Label1.Caption = "Результат:"<br />
+End Sub<&#47;code><br />
+Объясняю: в текстбокс 1 вводите первое число, во второй текстбокс второе, результат сложения выводится в третьем текстбоксе. Таким образом, кнопка 1 будет выполнять функцию сложения. В лейблах будет отображаться надпись &laquo;Действие&raquo; и &laquo;результат&raquo;<br />
+5. Еще можете написать кнопку &laquo;Очистить&raquo;<br />
+<code>Private Sub Command6_Click()<br />
+Text1.Text = &ldquo;&rdquo;<br />
+Text2.Text = &ldquo;&rdquo;<br />
+Text3.Text = &ldquo;&rdquo;<br />
+End Sub<&#47;code><br />
+Этот код выводит во всех текстбоксах пустую строку.<br />
+6. Кнопка &ldquo;&radic;&rdquo; может вызвать затруднения, поэтому подскажу<br />
+<code>Private Sub Command5_Click()<br />
+Text3.Text = Sqr((Text1.Text))<br />
+Text2.Text = "" 'очистка Text2<&#47;code><br />
+<a href="http:&#47;&#47;sergei-sazhin.ru&#47;wp-content&#47;uploads&#47;2012&#47;05&#47;calc_in_VB.7z">Скачать проект<&#47;a></p>

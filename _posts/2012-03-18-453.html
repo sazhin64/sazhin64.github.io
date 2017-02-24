@@ -1,0 +1,65 @@
+---
+layout: post
+status: publish
+published: true
+title: Калькулятор Онлайн
+author:
+  display_name: Sergey Sazhin
+  login: admin
+  email: sazhin64@gmail.com
+  url: ''
+author_login: admin
+author_email: sazhin64@gmail.com
+wordpress_id: 453
+wordpress_url: http://sergei-sazhin.ru/?p=453
+date: '2012-03-18 21:35:31 +0600'
+date_gmt: '2012-03-18 15:35:31 +0600'
+categories:
+- Методические разработки
+tags:
+- Калькулятор
+- скрипт
+- код кнопки
+comments: []
+---
+<p>Предлагаю вашему вниманию проект - калькулятор онлайн. Здесь я выложил код только одной кнопки. Это кнопка "Сложение". Поменяв немного код, вы сможете написать код кнопок "Вычитание", "Умножение", "Деление".</p>
+<p>Чтобы калькулятор заработал, вставьте код в документ *.txt, сохранить как *.html, открыть с помощью браузера. Для того, чтобы запустить этот скрипт в вордпресс пришлось добавить еще кусочек кода:</p>
+<p><code><!--?php function my_scripts_method() {&nbsp;&nbsp;&nbsp;&nbsp; wp_deregister_script( 'jquery' );&nbsp;&nbsp;&nbsp;&nbsp; wp_register_script( 'jquery', 'http:&#47;&#47;ajax.googleapis.com&#47;ajax&#47;libs&#47;jquery&#47;1.7.1&#47;jquery.min.js');&nbsp;&nbsp;&nbsp;&nbsp; wp_enqueue_script( 'jquery' ); }&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; add_action('wp_enqueue_scripts', 'my_scripts_method'); ?--><br />
+<&#47;code><br />
+Успехов в работе!</p>
+<p><code><html><br />
+<body></p>
+<p><input id="field1" &#47;> + <input id="field2" &#47;> = <input id="result" readonly="readonly" &#47;><&#47;p></p>
+<p><button id="calculate">Вычислить<&#47;button> <button id="empty">Очистить<&#47;button><&#47;p></p>
+<p><script src="http:&#47;&#47;ajax.googleapis.com&#47;ajax&#47;libs&#47;jquery&#47;1.6.4&#47;jquery.min.js" type="text&#47;javascript"><&#47;script><br />
+<script type="text&#47;javascript"><br />
+$(function() {<br />
+$('#calculate').click(function() {<br />
+$('#result').val(parseFloat($('#field1').val()) + parseFloat($('#field2').val()));<br />
+});</p>
+<p>$('#empty').click(function() {<br />
+$('#field1').val('');<br />
+$('#field2').val('');<br />
+$('#result').val('');<br />
+});<br />
+});<br />
+<&#47;script></p>
+<style type="text&#47;css">
+#calculate {<br />
+color: #0c0;<br />
+}<br />
+#empty {<br />
+color: #c00;<br />
+}<br />
+<&#47;style><br />
+<&#47;body><br />
+<&#47;html><&#47;code></p>
+<p>в первое поле вводите число и во второе тоже, нажимаете кнопку "вычислить", получаете результат. Для повторного действия нажимаете кнопку очистить.</p>
+<p><input id="field1" type="text" &#47;> +<br />
+<input id="field2" type="text" &#47;> =<br />
+<input id="result" type="text" readonly="readonly" &#47;></p>
+<p><button id="calculate">Вычислить<&#47;button> <button id="empty">Очистить<&#47;button><br />
+<!--?php function my_scripts_method() {     wp_deregister_script( 'jquery' );     wp_register_script( 'jquery', 'http:&#47;&#47;ajax.googleapis.com&#47;ajax&#47;libs&#47;jquery&#47;1.7.1&#47;jquery.min.js');     wp_enqueue_script( 'jquery' ); }       add_action('wp_enqueue_scripts', 'my_scripts_method'); ?--><br />
+<script type="text&#47;javascript" src="http:&#47;&#47;ajax.googleapis.com&#47;ajax&#47;libs&#47;jquery&#47;1.6.4&#47;jquery.min.js"><&#47;script><script type="text&#47;javascript">&#47;&#47; <![CDATA[<br />
+      $(function() {       $('#calculate').click(function() {         $('#result').val(parseFloat($('#field1').val()) + parseFloat($('#field2').val()));       });       $('#empty').click(function() {         $('#field1').val('');         $('#field2').val('');         $('#result').val('');       });     });<br />
+&#47;&#47; ]]><&#47;script></p>

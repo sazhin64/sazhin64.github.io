@@ -1,0 +1,73 @@
+---
+layout: post
+status: publish
+published: true
+title: Задачи для Pascal ABC
+author:
+  display_name: Sergey Sazhin
+  login: admin
+  email: sazhin64@gmail.com
+  url: ''
+author_login: admin
+author_email: sazhin64@gmail.com
+wordpress_id: 1761
+wordpress_url: http://sergei-sazhin.ru/?p=1761
+date: '2014-05-03 12:54:22 +0600'
+date_gmt: '2014-05-03 06:54:22 +0600'
+categories:
+- Решение олимпиадных задач
+tags:
+- Pascal
+- ABC Pascal
+- паскаль
+comments: []
+---
+<p>Встретил недавно задачку, в которой требуется нарисовать треугольник по вводимым с клавиатуры координатам. Она легко реализуется с помощью модуля GraphABC и процедуры line.</p>
+<p><strong>Программа рисования треугольника,<&#47;strong> по вводимым с клавиатуры координатам.</p>
+<p>Вариант 1</p>
+<p><code>uses graphabc;</p>
+<p>var x,y,x1,y1,x2,y2:integer;</p>
+<p>begin</p>
+<p>readln(x,y,x1,y1,x2,y2);</p>
+<p>line(x,y,x1,y1);</p>
+<p>line(x1,y1,x2,y2);</p>
+<p>line(x2,y2,x,y);</p>
+<p>end.<&#47;code></p>
+<p>Вариант 2.</p>
+<p><code>uses graphabc;</p>
+<p>var x,y,x1,y1,x2,y2:integer;</p>
+<p>begin</p>
+<p>readln(x,y,x1,y1,x2,y2);</p>
+<p>moveto(x,y);</p>
+<p>lineto(x1,y1);</p>
+<p>lineto(x2,y2);</p>
+<p>lineto(x,y);</p>
+<p>end.<&#47;code></p>
+<p>Вариант 3.</p>
+<p><code>uses graphabc;</p>
+<p>var x,y,x1,y1,x2,y2:integer;</p>
+<p>begin</p>
+<p>readln(x,y,x1,y1,x2,y2);</p>
+<p>moveto(x,y);</p>
+<p>lineto(x1,y1);</p>
+<p>lineto(x2,y2);</p>
+<p>lineto(x,y);</p>
+<p>FloodFill(x+5,y+1,clred); {закрашивает треугольник красным, или вокруг него}</p>
+<p>end.<&#47;code></p>
+<p>Программа запрашивает координаты трех точек и высчитывает длины сторон треугольника, построенного по этим точкам, а также рисует его на координатной плоскости.<br />
+<code>uses graphabc;<br />
+var x1,y1,x2,y2,x3,y3:integer;<br />
+a,b,c:real;<br />
+begin<br />
+readln(x1,y1,x2,y2,x3,y3);<br />
+a:=sqrt(sqr(x1-x2)+sqr(y1-y2));<br />
+b:=sqrt(sqr(x2-x3)+sqr(y2-y3));<br />
+c:=sqrt(sqr(x3-x1)+sqr(y3-y1));<br />
+writeln(a,' ',b,' ',c);<br />
+line(0,200,500,200);<br />
+line(200,0,200,500);<br />
+line(200+x1,200-y1,200+x2,200-y2);<br />
+line(200+x2,200-y2,200+x3,200-y3);<br />
+line(200+x3,200-y3,200+x1,200-y1);<br />
+end.<&#47;code><br />
+ <a href="http:&#47;&#47;sergei-sazhin.ru&#47;?attachment_id=1765" rel="attachment wp-att-1765"><img src="http:&#47;&#47;sergei-sazhin.ru&#47;wp-content&#47;uploads&#47;2014&#47;05&#47;trangle.jpg" alt="" title="trangle" width="628" height="441" class="aligncenter size-full wp-image-1765" &#47;><&#47;a></p>

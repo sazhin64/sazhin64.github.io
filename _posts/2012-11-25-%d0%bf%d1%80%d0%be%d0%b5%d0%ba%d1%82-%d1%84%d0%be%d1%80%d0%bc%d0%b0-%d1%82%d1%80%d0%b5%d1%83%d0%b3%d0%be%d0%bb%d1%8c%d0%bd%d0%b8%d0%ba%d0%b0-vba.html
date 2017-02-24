@@ -1,0 +1,91 @@
+---
+layout: post
+status: publish
+published: true
+title: Проект "Форма треугольника" VBA
+author:
+  display_name: Sergey Sazhin
+  login: admin
+  email: sazhin64@gmail.com
+  url: ''
+author_login: admin
+author_email: sazhin64@gmail.com
+wordpress_id: 1470
+wordpress_url: http://sergei-sazhin.ru/?p=1470
+date: '2012-11-25 10:09:47 +0600'
+date_gmt: '2012-11-25 04:09:47 +0600'
+categories:
+- Excel VBA
+tags:
+- Excel
+comments: []
+---
+<p>Данный проект для Microsoft Excel, предназначен для решения математической задачи по определению типа треугольника по трем сторонам.</p>
+<p>Если вы введете значения сторон a, b, c, то программа должна выводить варианты ответов: какой это треугольник, существует ли он, изображает его графически.</p>
+<p>Ход работы:</p>
+<p>Заполнить ячейки согласно рисунку.</p>
+<p><a href="http:&#47;&#47;sergei-sazhin.ru&#47;?attachment_id=1471" rel="attachment wp-att-1471"><img class="aligncenter  wp-image-1471" title="formatreug" src="http:&#47;&#47;sergei-sazhin.ru&#47;wp-content&#47;uploads&#47;2012&#47;11&#47;formatreug.jpg" alt="" width="524" height="462" &#47;><&#47;a>Вставить командную кнопку и написать для нее следующий код:</p>
+<p><code>Dim a, b, c<br />
+Private Sub CommandButton1_Click()<br />
+Call DelPicture<br />
+Range("A7:F9").Clear<br />
+Range("A7:F9").Interior.Color = RGB(0, 255, 0)<br />
+Range("A7:F9").Font.Size = 14<br />
+a = Cells(3, 2): b = Cells(3, 4): c = Cells(3, 6)<br />
+If TypeName(a) <> "Double" Or TypeName(b) <> "Double" Or TypeName(c) <> "Double" Then<br />
+       Cells(7, 1) = "Неправильно введены данные!"<br />
+ElseIf (a + b <= c) Or (a + c <= b) Or (b + c <= a) Then<br />
+       Cells(7, 1) = "Треугольник не существует!"<br />
+Else<br />
+       If a = b And b = c Then<br />
+              Cells(7, 1) = "Треугольник равносторонний!"<br />
+       ElseIf a = b Or a = c Or b = c Then<br />
+               Cells(7, 1) = "Треугольник равнобедренный!"<br />
+Else<br />
+Cells(7, 1) = "Треугольник равносторонний!"<br />
+End If<br />
+If a ^ 2 < b ^ 2 + c ^ 2 And b ^ 2 < a ^ 2 + c ^ 2 _<br />
+   And c ^ 2 < a + b ^ 2 Then<br />
+   Cells(8, 1) = "Треугольник остроугольный"<br />
+   ElseIf a ^ 2 = b ^ 2 + c ^ 2 Or b ^ 2 = a ^ 2 + c ^ 2 _<br />
+   Or c ^ 2 = a ^ 2 + b ^ 2 Then<br />
+   Cells(8, 1) = "Треугольник прямоугольный"<br />
+   Else<br />
+    Cells(8, 1) = "Треугольник тупоугольный"<br />
+    End If<br />
+    Call addpicture<br />
+    End If<br />
+End Sub<br />
+Sub DelPicture()<br />
+    While Shapes.Count > 1<br />
+       Shapes(2).Delete<br />
+    Wend<br />
+End Sub<br />
+Sub addpicture()<br />
+    Dim tr(1 To 4, 1 To 2) As Single<br />
+    p = a + b + c: pp = p &#47; 2: s = Sqr(pp * (pp - a) * (pp - b) * (pp - c))<br />
+    hc = 2 * s &#47; c: L = Sqr(a ^ 2 - hc ^ 2)<br />
+    If b ^ 2 <= a ^ 2 + c ^ 2 Then<br />
+    x1 = 0: y1 = 0: x2 = c: y2 = 0: x3 = L: y3 = hc<br />
+Else<br />
+    x1 = L: y1 = 0: x2 = c + L: y2 = 0: x3 = 0: y3 = hc<br />
+End If<br />
+    If x2 > x3 Then r = x2 Else r = x3<br />
+    If hc > r Then r = hc<br />
+    k = 300 &#47; r<br />
+    Shapes.AddShape msoShapeRectangle, 400, 0, 300, 300<br />
+    If k > 10 Then<br />
+        For x = 0 To 300 Step k<br />
+            Shapes.AddLine 400 + x, 0, 400 + x, 300<br />
+            Shapes.AddLine 400, 300 - x, 700, 300 - x<br />
+                 Next<br />
+    End If<br />
+    tr(1, 1) = 400 + x1 * k: tr(1, 2) = 300<br />
+    tr(2, 1) = 400 + x2 * k: tr(2, 2) = 300<br />
+    tr(3, 1) = 400 + x3 * k: tr(3, 2) = 300 - hc * k<br />
+    tr(4, 1) = tr(1, 1): tr(4, 2) = tr(1, 2)<br />
+    Shapes.AddPolyline tr<br />
+    Shapes(Shapes.Count).Fill.ForeColor.RGB = RGB(0, 255, 0)<br />
+    End Sub<br />
+<&#47;code></p>
+<p><a href='http:&#47;&#47;sergei-sazhin.ru&#47;?attachment_id=1474' rel='attachment wp-att-1474'>Скачать проект<&#47;a></p>

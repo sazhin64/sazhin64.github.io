@@ -1,0 +1,36 @@
+---
+layout: post
+status: publish
+published: true
+title: Палиндром
+author:
+  display_name: Sergey Sazhin
+  login: admin
+  email: sazhin64@gmail.com
+  url: ''
+author_login: admin
+author_email: sazhin64@gmail.com
+wordpress_id: 1307
+wordpress_url: http://sergei-sazhin.ru/?p=1307
+date: '2012-06-02 17:24:23 +0600'
+date_gmt: '2012-06-02 11:24:23 +0600'
+categories:
+- Решение олимпиадных задач
+tags:
+- Задачи
+comments: []
+---
+<p>Задача: определить, является ли введенное с клавиатуры слово палиндромом?</p>
+<p>Решение: сравним первый элемент массива с последним, предпоследний со вторым и т. д.<br />
+<code>var a:string;<br />
+ k,n,i: integer;<br />
+begin<br />
+ writeln ('введите слово');<br />
+ readln (a);<br />
+ k:=0;<br />
+ n:=length(a);<br />
+ for i:=1 to (n div 2) do<br />
+  if copy(a,i,1) <> copy(a,n-i+1,1) then k:=1;<br />
+ if k=0 then writeln ('палиндром')<br />
+ else writeln ('не палиндром');<br />
+end.<&#47;code></p>

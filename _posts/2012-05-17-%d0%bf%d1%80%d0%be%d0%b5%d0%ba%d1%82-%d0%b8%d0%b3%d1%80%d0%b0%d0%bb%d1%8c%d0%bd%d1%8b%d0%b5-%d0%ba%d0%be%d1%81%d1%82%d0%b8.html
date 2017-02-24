@@ -1,0 +1,90 @@
+---
+layout: post
+status: publish
+published: true
+title: Проект "Игральные кости"
+author:
+  display_name: Sergey Sazhin
+  login: admin
+  email: sazhin64@gmail.com
+  url: ''
+author_login: admin
+author_email: sazhin64@gmail.com
+wordpress_id: 1186
+wordpress_url: http://sergei-sazhin.ru/?p=1186
+date: '2012-05-17 12:07:15 +0600'
+date_gmt: '2012-05-17 06:07:15 +0600'
+categories:
+- проекты на VB
+tags:
+- проекты VB
+- проект
+comments: []
+---
+<p>В проекте используются объекты Image и Option.<br />
+Размещаете на форме по 6 штук того  другого. Картинки можно наложить одна на другую, так как они будут видны только по одной.<br />
+Переключатели размещаем в столбик.<br />
+<a href="http:&#47;&#47;sergei-sazhin.ru&#47;?attachment_id=1189" rel="attachment wp-att-1189"><img src="http:&#47;&#47;sergei-sazhin.ru&#47;wp-content&#47;uploads&#47;2012&#47;05&#47;кубик.jpg" alt="" title="кубик" width="396" height="415" class="aligncenter size-full wp-image-1189" &#47;><&#47;a><br />
+Пишем программный код:<br />
+<code>Private Sub Option1_Click()<br />
+Image1.Visible = True<br />
+Image2.Visible = False<br />
+Image3.Visible = False<br />
+Image4.Visible = False<br />
+Image5.Visible = False<br />
+Image6.Visible = False<br />
+Image1.BorderStyle = 1<br />
+Image1.Picture = LoadPicture("C:\Users\ученик\Desktop\Новая папка (6)&#47;один.jpg")<br />
+End Sub<br />
+Private Sub Option2_Click()<br />
+Image1.Visible = False<br />
+Image2.Visible = True<br />
+Image3.Visible = False<br />
+Image4.Visible = False<br />
+Image5.Visible = False<br />
+Image6.Visible = False<br />
+Image2.BorderStyle = 1<br />
+Image2.Picture = LoadPicture("C:\Users\ученик\Desktop\Новая папка (6)&#47;два.jpg")<br />
+End Sub<br />
+Private Sub Option3_Click()<br />
+Image1.Visible = False<br />
+Image2.Visible = False<br />
+Image3.Visible = True<br />
+Image4.Visible = False<br />
+Image5.Visible = False<br />
+Image6.Visible = False<br />
+Image3.BorderStyle = 1<br />
+Image3.Picture = LoadPicture("C:\Users\ученик\Desktop\Новая папка (6)&#47;три.jpg")<br />
+End Sub</p>
+<p>Private Sub Option4_Click()<br />
+Image1.Visible = False<br />
+Image2.Visible = False<br />
+Image3.Visible = False<br />
+Image4.Visible = True<br />
+Image5.Visible = False<br />
+Image6.Visible = False<br />
+Image4.BorderStyle = 1<br />
+Image4.Picture = LoadPicture("C:\Users\ученик\Desktop\Новая папка (6)&#47;четыре.jpg")<br />
+End Sub</p>
+<p>Private Sub Option5_Click()<br />
+Image1.Visible = False<br />
+Image2.Visible = False<br />
+Image3.Visible = False<br />
+Image4.Visible = False<br />
+Image5.Visible = True<br />
+Image6.Visible = False<br />
+Image5.BorderStyle = 1<br />
+Image5.Picture = LoadPicture("C:\Users\ученик\Desktop\Новая папка (6)&#47;пять.jpg")<br />
+End Sub</p>
+<p>Private Sub Option6_Click()<br />
+Image1.Visible = False<br />
+Image2.Visible = False<br />
+Image3.Visible = False<br />
+Image4.Visible = False<br />
+Image5.Visible = False<br />
+Image6.Visible = True<br />
+Image6.BorderStyle = 1<br />
+Image6.Picture = LoadPicture("C:\Users\ученик\Desktop\Новая папка (6)&#47;шесть.jpg")<br />
+End Sub<&#47;code><br />
+Не забудьте, что ваши рисунки могут иметь другое имя файла. Это необходимо учитывать при написании кода. Зайдите в свойства рисунка и скопируйте полностью путь к файлу и имя с расширением. Вставьте в свой код. Можете изменить свойства переключателей (раскрасить, изменить шрифт, надписи. Желаю успеха!<br />
+<a href="http:&#47;&#47;sergei-sazhin.ru&#47;wp-content&#47;uploads&#47;2012&#47;05&#47;Новая-папка-6.7z">Скачать проект<&#47;a></p>

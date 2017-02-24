@@ -1,0 +1,47 @@
+---
+layout: post
+status: publish
+published: true
+title: ABC Pascal для школьника
+author:
+  display_name: Sergey Sazhin
+  login: admin
+  email: sazhin64@gmail.com
+  url: ''
+author_login: admin
+author_email: sazhin64@gmail.com
+wordpress_id: 1563
+wordpress_url: http://sergei-sazhin.ru/?p=1563
+date: '2013-01-28 14:22:58 +0600'
+date_gmt: '2013-01-28 08:22:58 +0600'
+categories:
+- Методические разработки
+tags:
+- ABC Pascal
+comments: []
+---
+<p>Бывают в жизни школьника моменты, когда нужно решить пример по алгебре (на вычисление), а ответа в конце учебника нет. Решение есть, но нужно проверить, верно ли оно, можно ли его оставить как есть, или нужно еще поработать?<br />
+В данном случае, вам поможет небольшой шаблон, с помощью которого можно решать разнообразные примеры, используя незамысловатый алгоритм.</p>
+<p>Попробуем, например, решить такой пример:</p>
+<p>-0,2<sup>3<&#47;sup>*0,2<sup>-2<&#47;sup> + 64<sup>1&#47;6<&#47;sup> &ndash; 5<sup>3<&#47;sup>&#47;5 + 6,5<sup>0<&#47;sup></p>
+<p>для этого напишем программу:</p>
+<p><code>var c:real;<br />
+begin<br />
+c:=(-1)*exp(3*ln(abs(-0.2)))*exp(-2*ln(abs(0.2)))+exp(1&#47;6*ln(abs(64)))-exp(3*ln(abs(5)))&#47;5+exp(0*ln(abs(6.5)));<br />
+writeln(c);<br />
+end.<&#47;code></p>
+<p>Чтобы получить промежуточные результаты, можно выполнять программу постепенно:</p>
+<p><code>var c:real;<br />
+begin<br />
+c:=(-1)*exp(3*ln(abs(-0.2)));<br />
+writeln(c);<br />
+end.<&#47;code></p>
+<p><code>var c:real;<br />
+begin<br />
+c:=(-1)*exp(3*ln(abs(-0.2)))*exp(-2*ln(abs(0.2)));<br />
+writeln(c);<br />
+end.<&#47;code></p>
+<p>и т. д.</p>
+<p>В основе работы программы лежит вычисление числа X в степени Y&nbsp; по формуле a:=exp(y*ln(abs(x)));</p>
+<p>если степень отрицательная, то нужно выражение умножить на -1</p>
+<p>a:=(-1)*exp(y*ln(abs(x)));</p>

@@ -1,0 +1,117 @@
+---
+layout: post
+status: publish
+published: true
+title: Проект "Эпидемия"
+author:
+  display_name: Sergey Sazhin
+  login: admin
+  email: sazhin64@gmail.com
+  url: ''
+author_login: admin
+author_email: sazhin64@gmail.com
+wordpress_id: 1201
+wordpress_url: http://sergei-sazhin.ru/?p=1201
+date: '2012-05-18 11:34:14 +0600'
+date_gmt: '2012-05-18 05:34:14 +0600'
+categories:
+- Excel VBA
+tags:
+- VBA
+- Excel
+- проект
+- видео
+comments:
+- id: 299
+  author: артём
+  author_email: artemmalcev97@mail.ru
+  author_url: ''
+  date: '2012-11-20 11:40:20 +0600'
+  date_gmt: '2012-11-20 05:40:20 +0600'
+  content: спасибо!!!!!!
+- id: 18423
+  author: Sergey Sazhin
+  author_email: sazhin64@gmail.com
+  author_url: ''
+  date: '2014-05-24 09:37:05 +0600'
+  date_gmt: '2014-05-24 03:37:05 +0600'
+  content: Пожалуйста! Рад, если помог
+---
+<p>Данный проект хорош как иллюстрация модели случайных событий, таких как рост и уменьшение числа заболевших людей при эпидемии гриппа.</p>
+<p>Основная функция, которая используется - Randomize (генерирует случайные числа).</p>
+<p>Работа с листами. Создайте на первом листе квадрат из клеток 25*25, сделайте для него границы, расположите ниже три командных кнопки: расставить случайно, один такт, 20 тактов. На втором листе подготовить точно такую же область и окружить ее со всех сторон минус единицами.</p>
+<p><a href="http:&#47;&#47;sergei-sazhin.ru&#47;?attachment_id=1204" rel="attachment wp-att-1204"><img class="aligncenter size-large wp-image-1204" title="эпидемия" src="http:&#47;&#47;sergei-sazhin.ru&#47;wp-content&#47;uploads&#47;2012&#47;05&#47;эпидемия-1024x543.jpg" alt="" width="584" height="309" &#47;><&#47;a></p>
+<p>Для визуализации полученных данных построим график. Для этого выделим диапазон A31:B181, в котором будут помещаться полученные значения.</p>
+<p>Теперь программирование. Для кнопки "Расставить случайно" напишем следующий код:<br />
+<code>Dim r As Range, rc As Range<br />
+Dim kz, n, nimm, nbol, pb, day<br />
+Private Sub CommandButton1_Click()<br />
+day = 0<br />
+For i = 1 To 150<br />
+Cells(i + 30, 2) = ""<br />
+Next i<br />
+kz = Cells(2, 29): n = Cells(3, 29): If n > 625 Then n = 625<br />
+nimm = Cells(4, 29): nbol = Cells(5, 29): pb = nbol<br />
+Cells(8, 29) = nbol: Cells(9, 29) = pb: Cells(10, 29) = n - nimm - pb<br />
+Set r = Range("B2:Z26")<br />
+For y = 1 To 25: For x = 1 To 25<br />
+r.Cells(y, x) = "": r.Cells(y, x).Interior.ColorIndex = 0<br />
+Next x, y<br />
+For i = 1 To n - nimm - nbol<br />
+x = Int(Rnd * 25) + 1: y = Int(Rnd * 25) + 1<br />
+While r.Cells(y, x) <> "": x = Int(Rnd * 25) + 1: y = Int(Rnd * 25) + 1: Wend<br />
+r.Cells(y, x) = 0: r.Cells(y, x).Interior.ColorIndex = 6<br />
+Next i<br />
+For i = 1 To him<br />
+x = Int(Rnd * 25) + 1: y = Int(Rnd * 25) + 1<br />
+While r.Cells(y, x) <> "": x = Int(Rnd * 25) + 1: y = Int(Rnd * 25) + 1: Wend<br />
+r.Cells(y, x) = 8: r.Cells(y, x).Interior.ColorIndex = 12<br />
+Next i<br />
+For i = 1 To nbol<br />
+x = Int(Rnd * 25) + 1: y = Int(Rnd * 25) + 1<br />
+While r.Cells(y, x) <> "": x = Int(Rnd * 25) + 1: y = Int(Rnd * 25) + 1: Wend<br />
+r.Cells(y, x) = 1: r.Cells(y, x).Interior.ColorIndex = 5<br />
+Next i<br />
+End Sub<&#47;code><br />
+Обозначения: пусто - нет человекав, 0-здоровый человек, 1-7 - больной человек, 8 - переболевший человек с иммунитетом. Все клетки обозначены разныыми цветами.<br />
+Код для кнопки "1 такт":<br />
+<code>Private Sub CommandButton2_Click()<br />
+day = day + 1<br />
+Cells(day + 30, 1) = day: Cells(day + 30, 2) = nbol<br />
+  kz = Cells(2, 29): n = Cells(3, 29)<br />
+  nimm = Cells(4, 29): nbol = Cells(8, 29): pb = Cells(9, 29)<br />
+  Set r = Range("B2:Z26")<br />
+  Set rc = Worksheets("Копия").Range("B2:Z26")<br />
+  r.Copy Destination:=Worksheets("Копия").Range("B2")<br />
+  For y = 1 To 25: For x = 1 To 25<br />
+   If rc.Cells(y, x) <> "" Then<br />
+    d = rc.Cells(y, x)<br />
+       If d > 0 And d < 7 Then<br />
+       r.Cells(y, x) = r.Cells(y, x) + 1<br />
+    ElseIf d = 7 Then<br />
+       r.Cells(y, x) = 8: r.Cells(y, x).Interior.ColorIndex = 12<br />
+       nbol = nbol - 1: Cells(8, 29) = nbol<br />
+    ElseIf d = 0 Then<br />
+       b = False: p = Rnd<br />
+       If rc.Cells(y, x + 1) > 0 And rc.Cells(y, x + 1) < 8 And p < kz Then b = True<br />
+       If rc.Cells(y, x - 1) > 0 And rc.Cells(y, x - 1) < 8 And p < kz Then b = True<br />
+       If rc.Cells(y + 1, x) > 0 And rc.Cells(y + 1, x) < 8 And p < kz Then b = True<br />
+       If rc.Cells(y - 1, x) > 0 And rc.Cells(y - 1, x) < 8 And p < kz Then b = True<br />
+       If b = True Then<br />
+            r.Cells(y, x) = 1: r.Cells(y, x).Interior.ColorIndex = 5<br />
+            nbol = nbol + 1: pb = pb + 1: Cells(8, 29) = nbol: Cells(9, 29) = pb<br />
+            Cells(10, 29) = n - nimm - pb<br />
+       End If<br />
+    End If<br />
+  End If<br />
+ Next x, y<br />
+End Sub<&#47;code><br />
+Для кнопки "20 тактов" код:<br />
+<code>Private Sub CommandButton3_Click()<br />
+For K = 1 To 20<br />
+Call CommandButton2_Click<br />
+Next K<br />
+End Sub<&#47;code><br />
+<object width="450" height="337"><param name="video" value="http:&#47;&#47;static.video.yandex.ru&#47;lite&#47;russian-field2005&#47;ivunfmizt6.4119&#47;"><&#47;param><param name="allowFullScreen" value="true"><&#47;param><param name="scale" value="noscale"><&#47;param><embed src="http:&#47;&#47;static.video.yandex.ru&#47;lite&#47;russian-field2005&#47;ivunfmizt6.4119&#47;" type="application&#47;x-shockwave-flash" width="450" height="337" allowFullScreen="true" scale="noscale" ><&#47;embed><&#47;object><br />
+Смотреть видео.<br />
+<a href="http:&#47;&#47;sergei-sazhin.ru&#47;wp-content&#47;uploads&#47;2012&#47;05&#47;Эпидемия.xlsm">Скачать проект<&#47;a></p>

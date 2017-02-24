@@ -1,0 +1,156 @@
+---
+layout: post
+status: publish
+published: true
+title: Руководство по созданию тестов в Excel
+author:
+  display_name: Sergey Sazhin
+  login: admin
+  email: sazhin64@gmail.com
+  url: ''
+author_login: admin
+author_email: sazhin64@gmail.com
+wordpress_id: 95
+wordpress_url: http://sergei-sazhin.ru/?p=95
+date: '2012-02-24 00:08:08 +0600'
+date_gmt: '2012-02-23 18:08:08 +0600'
+categories:
+- Методические разработки
+tags:
+- VBA
+- Excel
+- Тест
+- Самопроверяющийся тест
+comments: []
+---
+<p align="center"><strong>Руководство по созданию тестов в табличном процессоре <&#47;strong><strong>Excel<&#47;strong>.<&#47;p></p>
+<ol>
+<li>Для знакомства с технологией работы с тестом создайте новую книгу Excel. Переименуйте ее согласно поставленной задаче. Переименуйте <strong>Лист 1<&#47;strong> в <strong>Вопросы<&#47;strong>, а <strong>Лист 2<&#47;strong> в <strong>Проверка<&#47;strong>.<&#47;li>
+<li>На листе Вопросы выделите границами ячейки, показанные в таблице 1.<&#47;li><br />
+<&#47;ol></p>
+<table border="1" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td valign="top" width="213"><&#47;td></p>
+<td valign="top" width="213">
+<p align="center"><strong>A<&#47;strong><&#47;p><br />
+<&#47;td></p>
+<td valign="top" width="213">
+<p align="center"><strong>B<&#47;strong><&#47;p><br />
+<&#47;td><br />
+<&#47;tr></p>
+<tr>
+<td valign="top" width="213">
+<p align="center"><strong>1<&#47;strong><&#47;p><br />
+<&#47;td></p>
+<td valign="top" width="213">
+<p align="center"><strong>Вопрос<&#47;strong><&#47;p><br />
+<&#47;td></p>
+<td valign="top" width="213">
+<p align="center"><strong>Варианты ответа<&#47;strong><&#47;p><br />
+<&#47;td><br />
+<&#47;tr></p>
+<tr>
+<td valign="top" width="213">
+<p align="center"><strong>2<&#47;strong><&#47;p><br />
+<&#47;td></p>
+<td valign="top" width="213">
+<p align="center">Ваш вопрос<&#47;p><br />
+<&#47;td></p>
+<td valign="top" width="213">
+<p align="center">Ваши варианты ответов<&#47;p><br />
+<&#47;td><br />
+<&#47;tr><br />
+<&#47;tbody><br />
+<&#47;table><br />
+Таблица 1_Вопросы</p>
+<ol>
+<li>Заполните таблицу как показано выше.<&#47;li>
+<li>Поставьте курсор в ячейку В2(с вариантами ответов) <strong>Данные-проверка<&#47;strong>. В поле источник впишите варианты ответов через точку с запятой. У вас появится выпадающий список с вариантами ответов.<&#47;li>
+<li>Перейдите на лист <strong>Проверка<&#47;strong>. Выделите границами ячейки как показано в таблице 2.<&#47;li><br />
+<&#47;ol></p>
+<table border="1" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td valign="top" width="213"><&#47;td></p>
+<td valign="top" width="213">
+<p align="center"><strong>А<&#47;strong><&#47;p><br />
+<&#47;td></p>
+<td valign="top" width="213">
+<p align="center"><strong>В<&#47;strong><&#47;p><br />
+<&#47;td><br />
+<&#47;tr></p>
+<tr>
+<td valign="top" width="213">
+<p align="center"><strong>1<&#47;strong><&#47;p><br />
+<&#47;td></p>
+<td valign="top" width="213">
+<p align="center"><strong>Проверка <&#47;strong><&#47;p><br />
+<&#47;td></p>
+<td valign="top" width="213">
+<p align="center"><strong>Балл <&#47;strong><&#47;p><br />
+<&#47;td><br />
+<&#47;tr></p>
+<tr>
+<td valign="top" width="213">
+<p align="center"><strong>2<&#47;strong><&#47;p><br />
+<&#47;td></p>
+<td valign="top" width="213"><&#47;td></p>
+<td valign="top" width="213"><&#47;td><br />
+<&#47;tr><br />
+<&#47;tbody><br />
+<&#47;table><br />
+Таблица 2_Проверка</p>
+<ol>
+<li>Заполните таблицу как в образце. В поле <strong>проверка<&#47;strong> введите формулу: =ЕСЛИ(Вопросы!$B2="";"";ЕСЛИ(Вопросы!$B2="<strong>Верный<&#47;strong> <strong>ответ<&#47;strong>";"верно";"ошибка")). Логическое <strong>если<&#47;strong> проверяет, верно ли выбран ответ. В случае, если истина, &laquo;верно&raquo;, если ложь, &laquo;ошибка&raquo;.<&#47;li>
+<li>В поле <strong>Балл <&#47;strong>введите формулу: =ЕСЛИ(B2="Верно";1;0). Формула выставляет один балл за правильный ответ и 0 баллов за неправильный.<&#47;li>
+<li>Выделите ячейки как показано в таблице 3.<&#47;li><br />
+<&#47;ol></p>
+<table border="1" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td valign="top" width="213"><strong>&nbsp;<&#47;strong><&#47;td></p>
+<td valign="top" width="213">
+<p align="center"><strong>А<&#47;strong><&#47;p><br />
+<&#47;td></p>
+<td valign="top" width="213">
+<p align="center"><strong>В<&#47;strong><&#47;p><br />
+<&#47;td><br />
+<&#47;tr></p>
+<tr>
+<td valign="top" width="213">
+<p align="center"><strong>10<&#47;strong><&#47;p><br />
+<&#47;td></p>
+<td valign="top" width="213">
+<p align="center"><strong>балл<&#47;strong><&#47;p><br />
+<&#47;td></p>
+<td valign="top" width="213">
+<p align="center"><strong>отметка<&#47;strong><&#47;p><br />
+<&#47;td><br />
+<&#47;tr></p>
+<tr>
+<td valign="top" width="213">
+<p align="center"><strong>11<&#47;strong><&#47;p><br />
+<&#47;td></p>
+<td valign="top" width="213"><strong>&nbsp;<&#47;strong><&#47;td></p>
+<td valign="top" width="213"><strong>&nbsp;<&#47;strong><&#47;td><br />
+<&#47;tr><br />
+<&#47;tbody><br />
+<&#47;table><br />
+Таблица 3_Проверка</p>
+<ol>
+<li>В поле <strong>балл<&#47;strong> введите формулу: =B2. Она будет отражать полученный балл. Если в таблице несколько вопросов, то нужно применить формулу =СЧЕТЕСЛИ(<strong>интервал ячеек с Баллами<&#47;strong>) и <strong>критерий<&#47;strong>. Формула посчитает количество баллов.<&#47;li>
+<li>В поле Отметка введите формулу:<strong> логическое если<&#47;strong>, где положительное значение 1 &ndash; отметка &laquo;отлично&raquo;, 0 &ndash; отметка &laquo;неудовлетворительно&raquo; =ЕСЛИ(B2=1;"отлично";"неудовлетворительно") <strong>Вставляйте свои номера ячеек!<&#47;strong><&#47;li>
+<li>Лист проверка можно скрыть и защитить паролем, тогда он будет недоступен для тех, кто выполняет тест.<&#47;li>
+<li>Для повторного использования теста можно использовать макрос <strong>Очистка<&#47;strong>. Для этого на лист <strong>Вопросы.<&#47;strong> Создание кнопки <strong>очистка<&#47;strong>. Путь: <strong>Вид<&#47;strong> &ndash; <strong>макрос<&#47;strong> &ndash; <strong>макросы<&#47;strong> &ndash; <strong>войти<&#47;strong>. Откроется редактор макросов работающий в среде Visual Basic. Написать код:<&#47;li><br />
+<&#47;ol><br />
+<code>Sub Очистка()</p>
+<p>Range("A14").Select</p>
+<p>Range("A14").FormulaR1C1 = Empty</p>
+<p>End Sub<&#47;code></p>
+<p>Сохранить. Для кнопки <strong>очистка<&#47;strong> выбрать путь: <strong>файл<&#47;strong> &ndash; <strong>параметры <&#47;strong><strong>Excel<&#47;strong> &ndash; <strong>поставить галочку Показывать вкладку &laquo;Разработчик на ленте&raquo;<&#47;strong>, <strong>ОК<&#47;strong>. <strong>Разработчик &ndash; вставить &ndash; кнопка<&#47;strong>.</p>
+<ol>
+<li>Поставьте курсор в нужное место и создайте кнопку нужного размера. Автоматически появится окно с макросами. Выберите макрос <strong>Очистка<&#47;strong>. Ок. Правой кнопкой мыши щелкнуть на <strong>кнопку,<&#47;strong> сделать надпись <strong>Очистка<&#47;strong>. Макрос сохранить в текущей книге.<&#47;li>
+<li>Сохранить файл, проверить работоспособность.<&#47;li>
+<li>Создавая свои тесты, используйте картинки, заливку, формулы и т д.<&#47;li><br />
+<&#47;ol></p>

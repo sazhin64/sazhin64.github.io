@@ -1,0 +1,55 @@
+---
+layout: post
+status: publish
+published: true
+title: Калькулятор "необычных" функций
+author:
+  display_name: Sergey Sazhin
+  login: admin
+  email: sazhin64@gmail.com
+  url: ''
+author_login: admin
+author_email: sazhin64@gmail.com
+wordpress_id: 1558
+wordpress_url: http://sergei-sazhin.ru/?p=1558
+date: '2013-01-23 12:16:24 +0600'
+date_gmt: '2013-01-23 06:16:24 +0600'
+categories:
+- проекты на VB
+tags:
+- Калькулятор
+comments: []
+---
+<p>Многие люди, когда учатся программированию, начинают с того, что создают калькулятор. Мы тоже создали не один, а теперь мне хотелось бы предложить вам создать калькулятор нечасто используемых функций. Этими функциями могут быть x^y, корень квадратный из x, корень из x n-й степени, экспонента числа x, число x в 16-й системе счисления, и т. д.<br />
+Кроме приведенных функций имеется еще множество встроенных, которые можно вычислить одной единственной операцией.<br />
+Для создания проекта на форме разместите 3 текстбокса и 7 командных кнопок. По желанию можете вставить лейблы для объяснений.<br />
+5 кнопок нам нужны для вычислений, 6-я и 7-я кнопки: очистка и выход.<br />
+печатаем программный код<br />
+<code>Private Sub Command1_Click()<br />
+Text3.Text = Val(Text1.Text) ^ Val(Text2.Text)<br />
+End Sub</p>
+<p>Private Sub Command2_Click()<br />
+Text3.Text = Sqr(Val(Text1.Text))<br />
+Text2.Text = ""<br />
+End Sub</p>
+<p>Private Sub Command3_Click()<br />
+Text3.Text = Val(Text1.Text) ^ (1 &#47; Val(Text2.Text))<br />
+Text2.Text = ""<br />
+End Sub</p>
+<p>Private Sub Command4_Click()<br />
+Text3.Text = Exp(Val(Text1.Text))<br />
+Text2.Text = ""<br />
+End Sub</p>
+<p>Private Sub Command5_Click()<br />
+Text3.Text = Hex(Val(Text1.Text))<br />
+Text2.Text = ""<br />
+End Sub</p>
+<p>Private Sub Command6_Click()<br />
+Text1.Text = ""<br />
+Text2.Text = ""<br />
+Text3.Text = ""<br />
+End Sub</p>
+<p>Private Sub Command7_Click()<br />
+End<br />
+End Sub<br />
+<&#47;code></p>

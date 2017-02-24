@@ -1,0 +1,53 @@
+---
+layout: post
+status: publish
+published: true
+title: Проект VB &laquo;График функции типа y = ax2 + bx + c&raquo;
+author:
+  display_name: Sergey Sazhin
+  login: admin
+  email: sazhin64@gmail.com
+  url: ''
+author_login: admin
+author_email: sazhin64@gmail.com
+wordpress_id: 823
+wordpress_url: http://sergei-sazhin.ru/?p=823
+date: '2012-05-10 21:31:30 +0600'
+date_gmt: '2012-05-10 15:31:30 +0600'
+categories:
+- проекты на VB
+tags:
+- Visual Basic
+- проекты VB
+- график функции
+comments: []
+---
+<p>Проект VB &laquo;График функции типа y = ax2 + bx + c&raquo;<br />
+1. Работа с формой. Располагаем на форме 1 PictureBox, 3 Textboxa, 1 CommandButton.<br />
+2. В PictureBox-е будет рисоваться график функции, а в Textbox будут записываться коэффициенты квадратного уравнения a, b, c, а кнопка CommandButton будет давать старт проекту.<br />
+<code>Option Explicit<br />
+Dim a As Single, b As Single, c As Single<br />
+Dim x As Single, y As Single<br />
+Dim i As Integer<br />
+Private Sub Command1_Click()<br />
+Picture1.Scale (-5, 8)-(5, -8)<br />
+a = Text1.Text<br />
+b = Text2.Text<br />
+c = Text3.Text<br />
+Picture1.Line (-5, 0)-(5, 0)<br />
+For i = -5 To 5<br />
+Picture1.PSet (i, 0)<br />
+Picture1.Print i<br />
+Next<br />
+Picture1.Line (0, -8)-(0, 8)<br />
+For i = -8 To 8<br />
+Picture1.PSet (0, i)<br />
+Picture1.Print i<br />
+Next<br />
+For x = -5 To 5 Step 0.005<br />
+y = a * x * x + b * x + c<br />
+Picture1.PSet (x, y), vbRed<br />
+Next<br />
+End Sub<&#47;code><br />
+<a href="http:&#47;&#47;sergei-sazhin.ru&#47;?attachment_id=825" rel="attachment wp-att-825"><img class="aligncenter size-full wp-image-825" title="grafik" src="http:&#47;&#47;sergei-sazhin.ru&#47;wp-content&#47;uploads&#47;2012&#47;05&#47;grafik1.jpg" alt="" width="824" height="711" &#47;><&#47;a>Вставим в текстбоксы коэффициенты 7, 3, -3 и получим следующий график.</p>
+<p><a href="http:&#47;&#47;sergei-sazhin.ru&#47;wp-content&#47;uploads&#47;2012&#47;05&#47;график-функции.rar">Скачать проект<&#47;a></p>

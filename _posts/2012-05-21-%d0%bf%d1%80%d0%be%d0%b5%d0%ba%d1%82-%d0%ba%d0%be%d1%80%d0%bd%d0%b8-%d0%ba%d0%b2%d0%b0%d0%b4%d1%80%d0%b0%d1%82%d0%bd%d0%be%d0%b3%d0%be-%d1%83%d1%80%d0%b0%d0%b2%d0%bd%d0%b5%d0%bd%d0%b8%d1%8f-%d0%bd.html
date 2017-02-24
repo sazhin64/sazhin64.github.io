@@ -1,0 +1,71 @@
+---
+layout: post
+status: publish
+published: true
+title: Проект "Корни квадратного уравнения" на VBA в Excel
+author:
+  display_name: Sergey Sazhin
+  login: admin
+  email: sazhin64@gmail.com
+  url: ''
+author_login: admin
+author_email: sazhin64@gmail.com
+wordpress_id: 1261
+wordpress_url: http://sergei-sazhin.ru/?p=1261
+date: '2012-05-21 14:57:23 +0600'
+date_gmt: '2012-05-21 08:57:23 +0600'
+categories:
+- Excel VBA
+tags: []
+comments:
+- id: 326
+  author: Sergey Sazhin
+  author_email: sazhin64@gmail.com
+  author_url: ''
+  date: '2013-06-11 00:52:07 +0600'
+  date_gmt: '2013-06-10 18:52:07 +0600'
+  content: Don't write any bullsheet! There is not dofollow blog. Comments may be
+    approved about the same item only!
+---
+<p>Откройте программу и оформите первый лист как показано на картинке.<br />
+<a href="http:&#47;&#47;sergei-sazhin.ru&#47;?attachment_id=1262" rel="attachment wp-att-1262"><img class="aligncenter size-full wp-image-1262" title="корни" src="http:&#47;&#47;sergei-sazhin.ru&#47;wp-content&#47;uploads&#47;2012&#47;05&#47;корни.jpg" alt="" width="534" height="321" &#47;><&#47;a></p>
+<p>Вставьте командную кнопку, с помощью которой будут производиться расчеты. работа программы основана на нахождении корней по формуле: d = b^2-4*a*c</p>
+<p>И сравнении дискриминанта с нулем.</p>
+<p>теперь пишем программный код:<br />
+<code>Private Sub CommandButton1_Click()<br />
+a = Cells(3, 2): b = Cells(3, 4): c = Cells(3, 6)<br />
+If TypeName(a) <> "Double" Then GoTo ex<br />
+If TypeName(b) <> "Double" Then GoTo ex<br />
+If TypeName(c) <> "Double" Then GoTo ex<br />
+Range("A7:F10").Clear<br />
+Range("A7:F10").Interior.Color = RGB(0, 255, 0)<br />
+Range("A7:F10").Font.Size = 14<br />
+Cells(7, 1) = "результаты"<br />
+If a = 0 Then<br />
+Cells(8, 1) = "Это не квадратное уравнение!"<br />
+Cells(9, 1) = "Это не квадратное уравнение"<br />
+Cells(10, 1) = "Повторите ввод данных"<br />
+Else<br />
+d = b ^ 2 - 4 * a * c<br />
+If d > 0 Then<br />
+x1 = (-b - Sqr(d)) &#47; (2 * a): x2 = (-b + Sqr(d)) &#47; (2 * a)<br />
+Cells(8, 1) = "Уравнение имеет два решения!"<br />
+Cells(9, 1) = "X1 = ": Cells(9, 2) = x1<br />
+Cells(10, 1) = "X2 = ": Cells(10, 2) = x2<br />
+End If<br />
+If d = 0 Then<br />
+x = -b &#47; (2 * a)<br />
+Cells(8, 1) = "Уравнение имеет ешение!"<br />
+Cells(9, 1) = "X = ": Cells(9, 2) = x<br />
+End If<br />
+If d < 0 Then<br />
+Cells(8, 1) = "Уравнение не имеет корней!"<br />
+End If<br />
+End If<br />
+Exit Sub<br />
+ex: MsgBox ("Вводить числа! А ты что ввел? Повторите ввод")<br />
+End Sub<br />
+<&#47;code><br />
+Сообщение об ошибке нам нужно для того, чтобы пояснить недальновидному человеку, который пытается ввести буквы вместо цифр.<br />
+если вы сделали все правильно, то у вас получится примерно так:<br />
+<a href="http:&#47;&#47;sergei-sazhin.ru&#47;?attachment_id=1266" rel="attachment wp-att-1266"><img class="aligncenter size-full wp-image-1266" title="квадратное уравнение" src="http:&#47;&#47;sergei-sazhin.ru&#47;wp-content&#47;uploads&#47;2012&#47;05&#47;квадратное-уравнение.jpg" alt="" width="531" height="347" &#47;><&#47;a><a href="http:&#47;&#47;sergei-sazhin.ru&#47;wp-content&#47;uploads&#47;2012&#47;05&#47;проект-квадратные-корни.xlsm">Скачать проект<&#47;a></p>

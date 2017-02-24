@@ -1,0 +1,69 @@
+---
+layout: post
+status: publish
+published: true
+title: Проект &laquo;тригонометрический калькулятор&raquo; в VB
+author:
+  display_name: Sergey Sazhin
+  login: admin
+  email: sazhin64@gmail.com
+  url: ''
+author_login: admin
+author_email: sazhin64@gmail.com
+wordpress_id: 673
+wordpress_url: http://sergei-sazhin.ru/?p=673
+date: '2012-03-29 10:31:40 +0600'
+date_gmt: '2012-03-29 04:31:40 +0600'
+categories:
+- Методические разработки
+- проекты на VB
+tags:
+- Калькулятор
+- тригонометрический калькулятор
+comments: []
+---
+<p>Работа с формой: на форме расположить 6 командных кнопок: 4-для тригонометрических функций, одна для очистки, одна для выхода из программы. 4 текстбокса: 3-для ввода градусов, минут, секунд и один для вывода результата. И еще 4 лейбла: для надписей над текстбоксами и окном результата (градусы, минуты, секунды, результат).</p>
+<p>Придаем форме оригинальность путем изменения цвета кнопок, размера и типа шрифта, загружаем на форму картинку. Лейблы делаем прозрачными. Вся эта работа производится в окне свойств (Properties).</p>
+<ol>
+<li>Далее, определяем тип переменных, которые будут вводиться в текстбоксы:<&#47;li><br />
+<&#47;ol><br />
+<code>Const Pi = 3.14</p>
+<p>Dim grad As Single</p>
+<p>Dim min As Single</p>
+<p>Dim sec As Single</p>
+<p>Dim angle As Single<&#47;code></p>
+<ol>
+<li>Переименовываем Command1 в cmdSin (свойство Name) и, соответственно остальные кнопки кроме 5-й и 6-й. Код для первой кнопки дан целиком. Остальные пишутся аналогично.<&#47;li><br />
+<&#47;ol><br />
+<code>Private Sub cmdSin_Click()</p>
+<p>grad = Text1.Text&rsquo; Для текстбоксов пишем код</p>
+<p>min = Text2.Text</p>
+<p>sec = Text3.Text</p>
+<p>angle = (grad + min &#47; 60 * 100 + sec &#47; 60 * 100) * Pi &#47; 180&rsquo; Пишем функцию вычисления синуса угла</p>
+<p>Text4.Text = Sin(angle)&rsquo; В 4-й текстбокс выводим значение синуса для данного угла</p>
+<p>End Sub<&#47;code></p>
+<ol>
+<li>Результат для кнопки тангенса:<&#47;li><br />
+<&#47;ol><br />
+Text4.Text = Tan(angle)</p>
+<ol>
+<li>Результат для кнопки косинуса:<&#47;li><br />
+<&#47;ol><br />
+Text4.Text = Cos(angle)</p>
+<ol>
+<li>Результат для кнопки котангенса<&#47;li><br />
+<&#47;ol><br />
+Text4.Text = 1 &#47; Tan(angle)</p>
+<ol>
+<li>Код кнопки очистки:<&#47;li><br />
+<&#47;ol><br />
+<code>Private Sub Command5_Click()</p>
+<p>Text1.Text = ""</p>
+<p>Text2.Text = ""</p>
+<p>Text3.Text = ""</p>
+<p>Text4.Text = ""</p>
+<p>End Sub<&#47;code></p>
+<ol>
+<li>Код кнопки выхода пишем самостоятельно.<&#47;li><br />
+<&#47;ol><br />
+<strong>Тригонометрический калькулятор готов! Запускаем!<&#47;strong></p>

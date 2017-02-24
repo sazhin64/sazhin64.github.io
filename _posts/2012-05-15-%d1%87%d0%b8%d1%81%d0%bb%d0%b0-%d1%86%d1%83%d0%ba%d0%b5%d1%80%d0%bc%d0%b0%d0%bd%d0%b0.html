@@ -1,0 +1,54 @@
+---
+layout: post
+status: publish
+published: true
+title: Числа Цукермана
+author:
+  display_name: Sergey Sazhin
+  login: admin
+  email: sazhin64@gmail.com
+  url: ''
+author_login: admin
+author_email: sazhin64@gmail.com
+wordpress_id: 1133
+wordpress_url: http://sergei-sazhin.ru/?p=1133
+date: '2012-05-15 11:34:19 +0600'
+date_gmt: '2012-05-15 05:34:19 +0600'
+categories:
+- Решение олимпиадных задач
+tags:
+- ABC Pascal
+- Задачи
+- олимпиадные
+- паскаль
+comments: []
+---
+<p>Необходимо написать программу, которая выводит на экран все числа Цукермана, то есть трехзначные числа, которые нацело делятся на произведение своих цифр.<br />
+Например: 384   3*8*4 = 96   384&#47;96=4<br />
+решение:<br />
+Вариант 1.<br />
+<code>var i,a,b,c:integer;<br />
+begin<br />
+  for i := 111 to 999 do<br />
+  begin<br />
+    a := i div 100;<br />
+    b := (i div 10) mod 10;<br />
+    c := i mod 10;<br />
+    if (b <> 0) and (c <> 0) and (i mod (a * b * c) = 0) then writeln(i);<br />
+  end;<br />
+end.<&#47;code></p>
+<p>Вариант 2.<br />
+<code>var i, a, b, c:integer;<br />
+begin<br />
+  for a := 1 to 9 do<br />
+  begin<br />
+    for b := 1 to 9 do<br />
+    begin<br />
+      for c := 1 to 9 do<br />
+      begin<br />
+        i := a * 100 + b * 10 + c;<br />
+        if i mod (a * b * c) = 0 then writeln(i);<br />
+      end;<br />
+    end;<br />
+  end;<br />
+end.<&#47;code></p>

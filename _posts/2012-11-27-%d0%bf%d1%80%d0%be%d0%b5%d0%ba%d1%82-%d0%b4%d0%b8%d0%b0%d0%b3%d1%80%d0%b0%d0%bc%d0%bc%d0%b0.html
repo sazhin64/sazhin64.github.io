@@ -1,0 +1,50 @@
+---
+layout: post
+status: publish
+published: true
+title: Проект "Диаграмма"
+author:
+  display_name: Sergey Sazhin
+  login: admin
+  email: sazhin64@gmail.com
+  url: ''
+author_login: admin
+author_email: sazhin64@gmail.com
+wordpress_id: 1480
+wordpress_url: http://sergei-sazhin.ru/?p=1480
+date: '2012-11-27 18:57:22 +0600'
+date_gmt: '2012-11-27 12:57:22 +0600'
+categories:
+- Excel VBA
+tags:
+- Excel
+comments: []
+---
+<p>Допустим, вам нужно построить диаграмму в Excel, но не просто руками, а при помощи средств VBA.<br />
+Эта работа может оказаться легче, чем бы вы думали.<br />
+Первым делом, построим таблицу, как показано на рисунке, ниже разместим командную кнопку (построить).<br />
+<a href="http:&#47;&#47;sergei-sazhin.ru&#47;?attachment_id=1481" rel="attachment wp-att-1481"><img class="size-full wp-image-1481 alignleft" title="graph" src="http:&#47;&#47;sergei-sazhin.ru&#47;wp-content&#47;uploads&#47;2012&#47;11&#47;graph.jpg" alt="" width="260" height="404" &#47;><&#47;a></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>Для командной кнопки нужно написать следующий код:<br />
+<code>Private Sub commandbutton1_Click()<br />
+ChartObjects.Add 150, 10, 300, 200<br />
+c = ChartObjects.Count<br />
+ChartObjects(c).Interior.ColorIndex = 8<br />
+Dim r As Chart<br />
+Set r = ChartObjects(c).Chart<br />
+r.ChartType = xlColumnClustered<br />
+r.SetSourceData Source:=Range("A1:B7"), PlotBy:=xlColumns<br />
+End Sub<&#47;code><br />
+Заполните таблицу цифрами от 3-х до 6-и, нажмите на кнопку построить.<br />
+<a href="http:&#47;&#47;sergei-sazhin.ru&#47;?attachment_id=1484" rel="attachment wp-att-1484"><img class="aligncenter  wp-image-1484" title="graph1" src="http:&#47;&#47;sergei-sazhin.ru&#47;wp-content&#47;uploads&#47;2012&#47;11&#47;graph1.jpg" alt="" width="523" height="382" &#47;><&#47;a><br />
+Диаграмма будет выглядеть как на картинке.<br />
+Только не забывайте, чтобы проект работал, его нужно сохранить как книгу с поддержкой макросов. Это касается и всех остальных проектов.<br />
+<a href='http:&#47;&#47;sergei-sazhin.ru&#47;?attachment_id=1487' rel='attachment wp-att-1487'>Скачать проект "Диаграмма"<&#47;a></p>

@@ -1,0 +1,55 @@
+---
+layout: post
+status: publish
+published: true
+title: Проект "Графические объекты" в VBA
+author:
+  display_name: Sergey Sazhin
+  login: admin
+  email: sazhin64@gmail.com
+  url: ''
+author_login: admin
+author_email: sazhin64@gmail.com
+wordpress_id: 1490
+wordpress_url: http://sergei-sazhin.ru/?p=1490
+date: '2012-11-27 19:41:36 +0600'
+date_gmt: '2012-11-27 13:41:36 +0600'
+categories:
+- Excel VBA
+tags:
+- Excel
+comments: []
+---
+<p>В лист Excel вставьте автофигуры, как показано на рисунке.<br />
+<a href="http:&#47;&#47;sergei-sazhin.ru&#47;?attachment_id=1491" rel="attachment wp-att-1491"><img class="aligncenter  wp-image-1491" title="objects" src="http:&#47;&#47;sergei-sazhin.ru&#47;wp-content&#47;uploads&#47;2012&#47;11&#47;objects.jpg" alt="" width="526" height="236" &#47;><&#47;a>Затем, вставьте командную кнопку.</p>
+<p>Для нее напишите следующий код:</p>
+<p><code>Private Sub CommandButton1_Click()<br />
+For n = 0 To 10<br />
+p = 0.7181 + n * (0.8111 - 0.7181) &#47; 10<br />
+Shapes(1).Adjustments.Item(1) = p<br />
+Shapes(2).IncrementRotation 30<br />
+Shapes(3).Fill.ForeColor.SchemeColor = n<br />
+DoEvents<br />
+t = Timer: While Timer < t + 0.4: Wend<br />
+Next n<br />
+End Sub<br />
+Sub Макрос1()<br />
+ActiveSheet.Shapes.AddShape(msoShapeSmileyFace, 36.75, 9.75, 61.5, 53.25).Select<br />
+ActiveSheet.Shapes.AddShape(msoShapeRightArrow, 123#, 24#, 83.25, 41.25).Select<br />
+ActiveSheet.Shapes.AddShape(msoShape5pointStar, 253.5, 10.5, 66#, 60#).Select<br />
+End Sub<br />
+Sub Макрос2()<br />
+ActiveSheet.Shapes("AutoShape 1").Select<br />
+Selection.ShapeRange.Adjustments.Item(1) = 0.7181<br />
+ActiveSheet.Shapes("AutoShape 2").Select<br />
+Selection.ShapeRange.IncrementRotation -36#<br />
+ActiveSheet.Shapes("AutoShape 3").Select<br />
+Selection.ShapeRange.Fill.ForeColor.SchemeColor = 10<br />
+Selection.ShapeRange.Fill.Visible = msoTrue<br />
+Selection.ShapeRange.Fill.Solid<br />
+End Sub<&#47;code><br />
+Сохраните проект как книгу с поддержкой макросов, нажмите на кнопку "Анимация".<br />
+Посмотрите, что произойдет.<br />
+Написать макросы можно и другим путем: просто нажав кнопку <strong>начать запись<&#47;strong><br />
+Только при этом в макросе появляется много лишнего.<br />
+<a href='http:&#47;&#47;sergei-sazhin.ru&#47;?attachment_id=1492' rel='attachment wp-att-1492'>Скачать проект<&#47;a></p>

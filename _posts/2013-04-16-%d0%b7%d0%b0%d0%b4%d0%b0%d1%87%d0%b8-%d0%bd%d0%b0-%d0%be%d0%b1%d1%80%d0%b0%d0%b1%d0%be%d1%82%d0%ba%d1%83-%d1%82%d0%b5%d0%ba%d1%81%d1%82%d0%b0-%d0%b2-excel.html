@@ -1,0 +1,34 @@
+---
+layout: post
+status: publish
+published: true
+title: Задачи на обработку текста в Excel
+author:
+  display_name: Sergey Sazhin
+  login: admin
+  email: sazhin64@gmail.com
+  url: ''
+author_login: admin
+author_email: sazhin64@gmail.com
+wordpress_id: 1653
+wordpress_url: http://sergei-sazhin.ru/?p=1653
+date: '2013-04-16 12:40:12 +0600'
+date_gmt: '2013-04-16 06:40:12 +0600'
+categories:
+- Excel VBA
+tags:
+- Excel
+comments: []
+---
+<p>В ячейку B2 впишите слово Файликов, в ячейку B3 впишите слово Петя<br />
+В ячейке В4 получить текст Файликов Петя.<br />
+Для выполнения задания используйте функцию текст<br />
+Если не можете выполнить, перепечатайте формулу =ТЕКСТ(B2 &amp; " "&amp; B3;0)</p>
+<p><a href="http:&#47;&#47;sergei-sazhin.ru&#47;?attachment_id=1655" rel="attachment wp-att-1655"><img class="aligncenter  wp-image-1655" title="петяф" src="http:&#47;&#47;sergei-sazhin.ru&#47;wp-content&#47;uploads&#47;2013&#47;04&#47;петяф.jpg" alt="" width="445" height="193" &#47;><&#47;a><br />
+Фраза в скобках склеивает строки в ячейках А2 и А3 и вставляет пробел, находящийся между кавычками. Если не использовать пробел, то слова из ячеек будут переписаны слитно.<br />
+3. Подготовить лист, на котором в одной из ячеек (например,В3)<br />
+Вводится имя пользователя, а в другой (С5) после этого появляется текст<br />
+Здравствуйте ,.. .!(на месте многоточия должно быть введенное имя).<br />
+<a href="http:&#47;&#47;sergei-sazhin.ru&#47;?attachment_id=1654" rel="attachment wp-att-1654"><img class="aligncenter  wp-image-1654" title="петя" src="http:&#47;&#47;sergei-sazhin.ru&#47;wp-content&#47;uploads&#47;2013&#47;04&#47;петя.jpg" alt="" width="487" height="308" &#47;><&#47;a><br />
+Для этого используйте формулу =ТЕКСТ("Здравствуйте, "&amp; B3 &amp;"!";1)</p>
+<p>Формула склеивает строки с текстом Здравствуйте, текстом в ячейке В3 и восклицательный знак. Единица после точки с запятой показывает формат строки.</p>

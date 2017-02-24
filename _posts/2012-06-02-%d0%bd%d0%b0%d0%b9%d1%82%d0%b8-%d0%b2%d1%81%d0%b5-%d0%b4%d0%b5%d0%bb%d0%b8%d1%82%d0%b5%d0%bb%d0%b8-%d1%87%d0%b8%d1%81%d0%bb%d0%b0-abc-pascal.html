@@ -1,0 +1,56 @@
+---
+layout: post
+status: publish
+published: true
+title: Найти все делители числа ABC Pascal
+author:
+  display_name: Sergey Sazhin
+  login: admin
+  email: sazhin64@gmail.com
+  url: ''
+author_login: admin
+author_email: sazhin64@gmail.com
+wordpress_id: 1305
+wordpress_url: http://sergei-sazhin.ru/?p=1305
+date: '2012-06-02 17:13:09 +0600'
+date_gmt: '2012-06-02 11:13:09 +0600'
+categories:
+- Решение олимпиадных задач
+tags:
+- Задачи
+comments:
+- id: 293
+  author: Александр
+  author_email: z432@mail.ru
+  author_url: ''
+  date: '2012-09-06 02:26:35 +0600'
+  date_gmt: '2012-09-05 20:26:35 +0600'
+  content: "Немного неоптимально (а для олимпиадных задач это критично) - ведь раз
+    мы нашли один делитель, значит можем тут же разделить на него n, и получить второй.\r\nА
+    получив второй, можем пересмотреть верхнюю границу цикла, потому что уже гарантированно
+    не будет делителя большего, чем этот найденный второй делитель.\r\nЖаль только
+    что на паскале нельзя  менять границы цикла for внутри его тела, так что нужен
+    while.\r\n\r\nКак-то так\r\nvar n,i,max:integer;\r\nbegin\r\n    readln(n);\r\n
+    \   max := n;\r\n    i := 1;\r\n    while (i <= max) do\r\n    begin\r\n          if
+    n mod i = 0 then\r\n          begin\r\n             write(i,&#039; &#039;,n div
+    i,&#039; &#039;);\r\n             max := (n div i) - 1;\r\n          end;\r\n
+    \         i := i + 1;\r\n    end;\r\n    readln;\r\nend."
+- id: 294
+  author: Sergey Sazhin
+  author_email: sazhin64@gmail.com
+  author_url: ''
+  date: '2012-09-06 21:10:15 +0600'
+  date_gmt: '2012-09-06 15:10:15 +0600'
+  content: Спасибо! Стараюсь понемногу подтягивать математику, без нее никуда:)
+---
+<p>Дано: число n</p>
+<p>Написать программу, которая выводит все его делители.</p>
+<p>&nbsp;<br />
+Т. е. нам нужно найти такие числа Xi [1;n] при которых число n без остатка делиться на Xi.<br />
+<code>var n,i:integer;<br />
+begin<br />
+    readln(n);<br />
+    for i:=1 to n do<br />
+          if n mod i = 0 then write(i,' ');<br />
+    readln;<br />
+end.<&#47;code></p>
